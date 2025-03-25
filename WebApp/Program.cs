@@ -4,6 +4,8 @@ using Npgsql;
 //using neondb.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddOpenApi();
 
@@ -27,4 +29,15 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllers();
 app.Run();

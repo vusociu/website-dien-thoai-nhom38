@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\coc14\\Downloads\\BTLCNWeb\\WebApp\\WebApp.csproj": {}
+    "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\coc14\\Downloads\\BTLCNWeb\\WebApp\\WebApp.csproj": {
+    "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\coc14\\Downloads\\BTLCNWeb\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "C:\\Users\\coc14\\Downloads\\BTLCNWeb\\WebApp\\WebApp.csproj",
-        "packagesPath": "C:\\Users\\coc14\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\coc14\\Downloads\\BTLCNWeb\\WebApp\\obj\\",
+        "projectPath": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\WebApp.csproj",
+        "packagesPath": "C:\\Users\\vund1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\coc14\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vund1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -50,9 +50,25 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.3, )"
+            },
+            "Microsoft.AspNetCore.Routing": {
+              "target": "Package",
+              "version": "[2.3.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -60,9 +76,17 @@
               "target": "Package",
               "version": "[9.0.3, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.7.0, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[9.0.4, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.7.0, )"
             }
           },
           "imports": [
@@ -84,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
