@@ -16,7 +16,7 @@ Table User {
   deleted int
 }
 
-Table Tokens {
+Table UserToken {
   user_id int [pk]
   token varchar(32) [pk]
   created_at datetime
@@ -40,13 +40,13 @@ Table Product {
   deleted int
 }
 
-Table Galery {
+Table Gallery {
   id int [pk, increment]
   product_id int
   thumbnail varchar(500)
 }
 
-Table FeedBack {
+Table Feedback {
   id int [pk, increment]
   firstname varchar(30)
   lastname varchar(30)
@@ -59,7 +59,7 @@ Table FeedBack {
   updated_at datetime
 }
 
-Table Orders {
+Table Order {
   id int [pk, increment]
   user_id int
   fullname varchar(50)
@@ -72,7 +72,7 @@ Table Orders {
   total_money int
 }
 
-Table Order_Details {
+Table OrderDetail {
   id int [pk, increment]
   order_id int
   product_id int
@@ -85,12 +85,12 @@ Ref: "Role"."id" < "User"."role_id"
 
 Ref: "Category"."id" < "Product"."category_id"
 
-Ref: "Product"."id" < "Order_Details"."product_id"
+Ref: "Product"."id" < "OrderDetail"."product_id"
 
-Ref: "Product"."id" < "Galery"."product_id"
+Ref: "Product"."id" < "Gallery"."product_id"
 
-Ref: "Orders"."id" < "Order_Details"."order_id"
+Ref: "Order"."id" < "OrderDetail"."order_id"
 
-Ref: "User"."id" < "Orders"."user_id"
+Ref: "User"."id" < "Order"."user_id"
 
-Ref: "User"."id" < "Tokens"."user_id"
+Ref: "User"."id" < "UserToken"."user_id"
