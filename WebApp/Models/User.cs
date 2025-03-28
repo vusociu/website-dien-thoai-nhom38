@@ -1,21 +1,28 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebApp.Data
+namespace WebApp.Models
 {
     public class User
     {
         [Key]
         public int Id { get; set; }
-
-        [Required, MaxLength(100)]
-        public string Name { get; set; }
-
-        [Required, MaxLength(100)]
+        [Required, MaxLength(50)]
+        public string Fullname { get; set; }
+        [Required, MaxLength(150)]
         public string Email { get; set; }
+        [MaxLength(20)]
+        public string PhoneNumber { get; set; }
+        [MaxLength(200)]
+        public string Address { get; set; }
+        [Required, MaxLength(32)]
+        public string Password { get; set; }
+        public int RoleId { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public int Deleted { get; set; }
 
-        [Required, MaxLength(255)]
-        public string PasswordHash { get; set; }
-
-        public string Role { get; set; } = "Customer";
+        [ForeignKey("RoleId")]
+        public Role Role { get; set; }
     }
 }
