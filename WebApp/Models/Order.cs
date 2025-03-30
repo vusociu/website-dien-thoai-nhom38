@@ -2,23 +2,25 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebApp.Data
+namespace WebApp.Models
 {
     public class Order
     {
         [Key]
         public int Id { get; set; }
-
-        [Required]
         public int UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public User User { get; set; }
-
-        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
-
-        public decimal TotalPrice { get; set; }
-
-        public string Status { get; set; } = "Pending"; // "Pending", "Shipped", "Completed", "Cancelled"
+        [MaxLength(50)]
+        public string Fullname { get; set; }
+        [MaxLength(150)]
+        public string Email { get; set; }
+        [MaxLength(20)]
+        public string PhoneNumber { get; set; }
+        [MaxLength(200)]
+        public string Address { get; set; }
+        [MaxLength(1000)]
+        public string Note { get; set; }
+        public DateTime OrderDate { get; set; }
+        public int Status { get; set; }
+        public int TotalMoney { get; set; }
     }
 }
