@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 using Npgsql;
+using WebApp.Repositories;
+using WebApp.Middlewares;
 //using neondb.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +19,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<JwtService>();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -44,5 +47,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
+app.UseMiddleware<AuthMiddleware>();
 app.MapControllers();
 app.Run();

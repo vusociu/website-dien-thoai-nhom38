@@ -876,3 +876,9 @@ C:\Users\coc14\Downloads\BTLCNWeb\WebApp\obj\Debug\net9.0\refint\WebApp.dll
 C:\Users\coc14\Downloads\BTLCNWeb\WebApp\obj\Debug\net9.0\WebApp.pdb
 C:\Users\coc14\Downloads\BTLCNWeb\WebApp\obj\Debug\net9.0\WebApp.genruntimeconfig.cache
 C:\Users\coc14\Downloads\BTLCNWeb\WebApp\obj\Debug\net9.0\ref\WebApp.dll
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\BCrypt.Net-Next.dll
