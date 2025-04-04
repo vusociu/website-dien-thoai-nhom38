@@ -41,7 +41,7 @@ function Account() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <AccountCircleIcon sx={{ width: 32, height: 32 }}/>
+            <AccountCircleIcon sx={{ width: 32, height: 32 , color: 'primary.main'}}/>
           </IconButton>
         </Tooltip>
         <Menu
