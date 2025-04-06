@@ -25,6 +25,11 @@ namespace WebApp.Repositories
         {
             return _context.Users.FirstOrDefault(u => u.Email == email);
         }
+
+        public List<User> findAll()
+        {
+            return _context.Users.Where(u => u.RoleId!=0).ToList();
+        }
     }
 }
 

@@ -6,6 +6,8 @@ namespace WebApp.Repositories
     {
         User create(User user);
         User getByEmail(string email);
+
+        List<User> findAll();
     }
 }
 
