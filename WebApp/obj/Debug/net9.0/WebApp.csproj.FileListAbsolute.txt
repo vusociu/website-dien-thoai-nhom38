@@ -430,7 +430,6 @@ C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\obj\Debug\net9.0\refin
 C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\obj\Debug\net9.0\WebApp.pdb
 C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\obj\Debug\net9.0\WebApp.genruntimeconfig.cache
 C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\obj\Debug\net9.0\ref\WebApp.dll
-C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\coc14\Downloads\BTLCNWeb\WebApp\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\coc14\Downloads\BTLCNWeb\WebApp\bin\Debug\net9.0\appsettings.json
 C:\Users\coc14\Downloads\BTLCNWeb\WebApp\bin\Debug\net9.0\WebApp.staticwebassets.endpoints.json
@@ -882,3 +881,4 @@ C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\Micro
 C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

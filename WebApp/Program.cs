@@ -3,13 +3,15 @@ using WebApp.Data;
 using Npgsql;
 using WebApp.Repositories;
 using WebApp.Middlewares;
+using WebApp.helpers;
+using Microsoft.Extensions.Options;
 //using neondb.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddControllers();
+builder.Services.AddControllers();
 
-//builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllersWithViews();
@@ -21,6 +23,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<JwtService>();
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -37,6 +40,14 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+app.Use(async (context, next) =>
+{
+    var appSettings = context.RequestServices.GetRequiredService<IOptions<AppSettings>>().Value;
+    var timeZoneId = appSettings.DefaultTimeZone;
+    var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+    context.Items["TimeZone"] = timeZoneInfo;
+    await next();
+});
 
 if (!app.Environment.IsDevelopment())
 {

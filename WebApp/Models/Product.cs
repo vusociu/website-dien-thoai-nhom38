@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using WebApp.Data;
 
 namespace WebApp.Models
 {
@@ -16,6 +17,6 @@ namespace WebApp.Models
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public int Deleted { get; set; }
+        public SoftDelete Deleted { get; set; } = SoftDelete.NO_DELETED;
     }
 }

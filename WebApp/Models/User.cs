@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApp.Data;
 
 namespace WebApp.Models
 {
@@ -15,14 +16,11 @@ namespace WebApp.Models
         public string PhoneNumber { get; set; }
         [MaxLength(200)]
         public string Address { get; set; }
-        [Required, MaxLength(32)]
+        [Required, MaxLength(200)]
         public string Password { get; set; }
         public int RoleId { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; }
-        public int Deleted { get; set; }
-
-        [ForeignKey("RoleId")]
-        public Role Role { get; set; }
+        public SoftDelete Deleted { get; set; } = SoftDelete.NO_DELETED;
     }
 }

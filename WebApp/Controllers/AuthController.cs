@@ -26,7 +26,7 @@ namespace WebApp.Controllers
             var user = new User
             {
                 Email = dto.email,
-                Password = dto.password,
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.password),
                 Fullname = dto.fullName,
                 PhoneNumber = dto.phone,
                 Address = dto.address,

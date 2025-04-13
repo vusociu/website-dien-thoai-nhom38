@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApp.Data;
 
 namespace WebApp.Models
 {
@@ -22,5 +23,6 @@ namespace WebApp.Models
         public DateTime OrderDate { get; set; }
         public int Status { get; set; }
         public int TotalMoney { get; set; }
+        public SoftDelete Deleted { get; set; } = SoftDelete.NO_DELETED;
     }
 }

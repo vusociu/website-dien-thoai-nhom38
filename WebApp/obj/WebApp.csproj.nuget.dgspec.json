@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\WebApp.csproj": {}
+    "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\WebApp.csproj": {
+    "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\WebApp.csproj",
-        "packagesPath": "C:\\Users\\vund\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\obj\\",
+        "projectPath": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\WebApp.csproj",
+        "packagesPath": "C:\\Users\\vund1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\vund\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vund1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -82,19 +82,19 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.4, )"
             },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
@@ -128,7 +128,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

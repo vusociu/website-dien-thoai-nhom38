@@ -30,6 +30,16 @@ namespace WebApp.Repositories
         {
             return _context.Users.Where(u => u.RoleId!=0).ToList();
         }
+
+        public User byId(int id)
+        {
+            return _context.Users.FirstOrDefault(u => u.Id == id);
+        }
+
+        public User update(User updateUser)
+        {
+            return _context.Users.Update(updateUser).Entity;
+        }
     }
 }
 

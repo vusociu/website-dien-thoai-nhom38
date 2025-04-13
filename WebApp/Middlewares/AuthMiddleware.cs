@@ -17,7 +17,7 @@ namespace WebApp.Middlewares
         public async Task InvokeAsync(HttpContext context)
         {
             var path = context.Request.Path.ToString();
-            if (path.Contains("/login", StringComparison.OrdinalIgnoreCase))
+            if (path.Contains("/login", StringComparison.OrdinalIgnoreCase)|| path.Contains("/register", StringComparison.OrdinalIgnoreCase))
             {
                 await _next(context);
                 return;
