@@ -1,13 +1,21 @@
 import * as React from 'react';
-import Broad from './pages/Broads/_id';
-import { Button } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {publicRoutes} from './routes/index.jsx';
+
 
 
 function App() {
   return (
-    <>
-    <Broad/>
-    </>
+    <Router>
+      <div className='App'>
+        <Routes>
+          {publicRoutes.map((route, index) => {
+            const Page = route.component;
+            return <Route key={index} path={route.path} element={<Page/>} />;
+          })}
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
