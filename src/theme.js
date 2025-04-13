@@ -1,29 +1,4 @@
 import { cyan, deepOrange, orange, teal } from '@mui/material/colors';
-<<<<<<< HEAD
-import { experimental_extendTheme as extendTheme} from '@mui/material/styles'
-
-// Create a theme instance.
-const theme = extendTheme({
-      colorSchemes: {
-        // light: {
-        //   palette: {
-        //     // primary: { main: '#e3f2fd',},
-        //     // secondary: { main: '#f3e5f5',},
-        //     primary: teal,
-        //     secondary: deepOrange,
-        //   },
-        // },
-        // dark: {
-        //   palette: {
-        //     // primary: {main: '#42a5f5',},
-        //     // secondary:  {main:  '#ab47bc',},
-        //     primary: cyan,
-        //     secondary:  orange,
-        //   },
-        // },
-      },
-    });
-=======
 import { createTheme } from '@mui/material/styles'
 
 // Create a theme instance.
@@ -64,6 +39,5 @@ const theme = createTheme({
     // },
   },
 });
->>>>>>> vuongpm
 
 export default theme;
