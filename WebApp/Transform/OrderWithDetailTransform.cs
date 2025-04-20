@@ -6,5 +6,6 @@ namespace WebApp.Transform
     {
         public Order order { get; set; }
         public OrderDetail orderDetail { get; set; }
+        public Product product { get; set; }
     }
 }

@@ -20,12 +20,14 @@ namespace WebApp.Controllers
 
         private IOrderRepository _orderRepository;
         private IOrderDetailRepository _orderDetailRepository;
+        private IProductRepository _productRepository;
 
-        public OrderController(ApplicationDbContext context, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository)
+        public OrderController(ApplicationDbContext context, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, IProductRepository productRepository)
         {
             _context = context;
             _orderRepository = orderRepository;
             _orderDetailRepository = orderDetailRepository;
+            _productRepository = productRepository;
         }
 
         // POST: api/order/checkout
@@ -72,11 +74,13 @@ namespace WebApp.Controllers
         public async Task<IActionResult> listOrder([FromRoute] int id)
         {
             Order order = _orderRepository.byId(id);
-            OrderDetail orderDetails = _orderDetailRepository.byOrderId(order.Id);
+            OrderDetail orderDetail = _orderDetailRepository.byOrderId(order.Id);
+            Product product = _productRepository.byId(orderDetail.ProductId);
             return Ok(new OrderWithDetailTransform
             {
                 order = order,
-                orderDetail = orderDetails
+                orderDetail = orderDetail,
+                product = product
             });
         }
     }

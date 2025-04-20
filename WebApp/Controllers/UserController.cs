@@ -13,10 +13,17 @@ namespace WebApp.Controllers
         private IUserRepository _userRepository;
         private IOrderRepository _orderRepository;
         private IOrderDetailRepository _orderDetailRepository;
-        public UserController(IUserRepository userRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository) 
-        {
+        private IProductRepository _productRepository;
+        public UserController(
+            IUserRepository userRepository,
+            IOrderRepository orderRepository,
+            IOrderDetailRepository orderDetailRepository,
+            IProductRepository productRepository
+        ){
             _userRepository = userRepository;
             _orderRepository = orderRepository;
+            _orderDetailRepository = orderDetailRepository;
+            _productRepository = productRepository;
         }
         [HttpGet("index")]
         public async Task<IActionResult> listUser()
@@ -52,15 +59,17 @@ namespace WebApp.Controllers
             List<Order> orders = _orderRepository.byUserId(id);
             int[] orderIds = orders.Select(o => o.Id).ToArray();
             List<OrderDetail> orderDetails = _orderDetailRepository.byOrderIds(orderIds);
-
+            int[] productIds = orderDetails.Select(o => o.ProductId).ToArray();
+            List<Product> products = _productRepository.byIds(productIds);
             var result = orders.Select(order =>
             {
                 var matchingDetail = orderDetails.FirstOrDefault(detail => detail.OrderId == order.Id);
-
+                var matchingProduct = products.FirstOrDefault(product => product.Id == matchingDetail.ProductId);
                 return new OrderWithDetailTransform
                 {
                     order = order,
-                    orderDetail= matchingDetail
+                    orderDetail = matchingDetail,
+                    product = matchingProduct
                 };
             }).ToList();
 
