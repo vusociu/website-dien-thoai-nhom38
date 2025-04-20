@@ -6,6 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.DTO.User;
+using WebApp.Transform;
+using WebApp.Repositories;
 
 namespace WebApp.Controllers
 {
@@ -15,9 +18,14 @@ namespace WebApp.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public OrderController(ApplicationDbContext context)
+        private IOrderRepository _orderRepository;
+        private IOrderDetailRepository _orderDetailRepository;
+
+        public OrderController(ApplicationDbContext context, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository)
         {
             _context = context;
+            _orderRepository = orderRepository;
+            _orderDetailRepository = orderDetailRepository;
         }
 
         // POST: api/order/checkout
@@ -58,6 +66,18 @@ namespace WebApp.Controllers
 
             await _context.SaveChangesAsync();
             return Ok(new { orderId = order.Id, message = "Dat hang thanh cong!" });
+        }
+
+        [HttpGet("/{id}/detail")]
+        public async Task<IActionResult> listOrder([FromRoute] int id)
+        {
+            Order order = _orderRepository.byId(id);
+            OrderDetail orderDetails = _orderDetailRepository.byOrderId(order.Id);
+            return Ok(new OrderWithDetailTransform
+            {
+                order = order,
+                orderDetail = orderDetails
+            });
         }
     }
 
