@@ -10,6 +10,8 @@ function ListItems() {
     return (
       <Box
         sx={{
+          position: "sticky",
+          top: "20px",
           minWidth: "200px",
           maxWidth: "200px",
           bgcolor: "background.paper",
@@ -32,9 +34,8 @@ function ListItems() {
               component="div"
               id="nested-list-subheader"
               sx={{
-                //bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#333643' : '#ebecf0'),
-                //color: (theme) => (theme.palette.mode === 'dark' ? '#ffffff' : '#000000'),
                 borderRadius: "10px",
+                color: "black",
               }}
             >
               Danh mục

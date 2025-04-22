@@ -9,78 +9,91 @@ import Account from './account.jsx';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+import { Button } from '@mui/material';
+import LoginModal from '../../components/Authentication/LoginModal.jsx';
+import React, { useState } from 'react';
+
+const quantity = 0;
 
 function AppBar() {
-    return (
-      <Box
-        px={2}
-        sx={{
-          width: "100%",
-          height: "58px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          bgcolor: "background.white",
-          borderBottom: 1,
-          borderColor: "divider",
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <SmartphoneIcon sx={{ color: "primary.main" }} />
-          <Typography
-            sx={{
-              fontWeight: "bold",
-              fontSize: "1.2rem",
-              color: "primary.main",
-            }}
-          >
-            Project
-          </Typography>
-        </Box>
-
-        <Box
+  const [openLogin, setOpenLogin] = useState(false);
+  return (
+    <Box
+      px={2}
+      sx={{
+        width: "100%",
+        height: "58px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        bgcolor: "background.white",
+        borderBottom: 1,
+        borderColor: "divider",
+      }}
+    >
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1, mr: 2 }}>
+        <SmartphoneIcon sx={{ color: "primary.main" }} />
+        <Typography
           sx={{
-            width: 600,
-            maxWidth: "100%",
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": { 
-                border: 1.5,
-                borderColor: "divider", 
-                borderRadius: "8px", 
-              },
-              "&:hover fieldset": { borderColor: "primary.main" },
-              "&.Mui-focused fieldset": { borderColor: "primary.main" },
-            },
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+            color: "primary.main",
           }}
         >
-          <TextField
-            id="outlined-search"
-            // label=""
-            placeholder='Tìm kiếm'
-            type="search"
-            size="small"
-            fullWidth
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon sx={{ color: "primary.main" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <Tooltip title="Giỏ hàng">
-            <IconButton>
-              <Badge color="" variant="dot">
-                <ShoppingCartIcon sx={{ color: "primary.main" }} />
-              </Badge>
-            </IconButton>
-          </Tooltip>
-          <Account />
-        </Box>
+          Project
+        </Typography>
       </Box>
-    );
-  }
+
+      <Box
+        sx={{
+          width: 600,
+          maxWidth: "100%",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              border: "1px solid",
+              borderColor: "divider",
+              borderRadius: "10px",
+            },
+            "&:hover fieldset": { borderColor: "primary.main" },
+            "&.Mui-focused fieldset": { borderColor: "primary.main" },
+          },
+        }}
+      >
+        <TextField
+          id="outlined-search"
+          // label=""
+          placeholder='Tìm kiếm'
+          type="search"
+          size="small"
+          fullWidth
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon sx={{ color: "primary.main" }} />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
+      <Button
+        variant='contained'
+        onClick={() => setOpenLogin(true)}
+      >
+        Đăng nhập
+      </Button>
+      <LoginModal open={openLogin} onClose={() => setOpenLogin(false)} />
+      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <Tooltip title="Giỏ hàng">
+          <IconButton>
+            <Badge badgeContent={quantity} color="error" showZero max={99}>
+              <ShoppingCartIcon sx={{ color: "primary.main" }} />
+            </Badge>
+          </IconButton>
+        </Tooltip>
+        <Account />
+      </Box>
+    </Box>
+  );
+}
 
 export default AppBar;

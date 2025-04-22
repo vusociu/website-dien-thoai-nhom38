@@ -18,7 +18,7 @@ function Footer() {
           // gap: 2,
         }}
       >
-        <Button variant="outlined" startIcon={<ArrowDownwardIcon />}>
+        <Button variant="text" startIcon={<ArrowDownwardIcon />}>
           Xem thêm sản phẩm
         </Button>
       </Box>
