@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund1\\downloads\\website-dien-thoai-nhom38\\webapp\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund1\\downloads\\website-dien-thoai-nhom38\\webapp\\utility\\connectionhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\utility\\connectionhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -104,11 +108,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\docker-compose.yml",
+              "RelativeDocumentMoniker": "WebApp\\docker-compose.yml",
+              "ToolTip": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\docker-compose.yml",
+              "RelativeToolTip": "WebApp\\docker-compose.yml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-04-28T06:41:48.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Container.targets",
               "DocumentMoniker": "C:\\Users\\vund1\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\build\\Container.targets",
               "RelativeDocumentMoniker": "..\\..\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\build\\Container.targets",
@@ -120,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Microsoft.Bcl.Memory.targets",
               "DocumentMoniker": "C:\\Users\\vund1\\.nuget\\packages\\microsoft.bcl.memory\\9.0.0\\buildTransitive\\netcoreapp2.0\\Microsoft.Bcl.Memory.targets",
               "RelativeDocumentMoniker": "..\\..\\.nuget\\packages\\microsoft.bcl.memory\\9.0.0\\buildTransitive\\netcoreapp2.0\\Microsoft.Bcl.Memory.targets",
@@ -132,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\.gitignore",
               "RelativeDocumentMoniker": "WebApp\\.gitignore",
@@ -150,14 +167,14 @@
               "RelativeDocumentMoniker": "WebApp\\Dockerfile",
               "ToolTip": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Dockerfile",
               "RelativeToolTip": "WebApp\\Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-04-28T01:07:04.718Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "DataHelpers.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Utility\\DataHelpers.cs",
               "RelativeDocumentMoniker": "WebApp\\Utility\\DataHelpers.cs",
@@ -169,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ConnectionHelpers.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Utility\\ConnectionHelpers.cs",
               "RelativeDocumentMoniker": "WebApp\\Utility\\ConnectionHelpers.cs",
@@ -177,12 +194,11 @@
               "RelativeToolTip": "WebApp\\Utility\\ConnectionHelpers.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T00:53:25.242Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T00:53:25.242Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "WebApp.csproj",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\WebApp.csproj",
               "RelativeDocumentMoniker": "WebApp\\WebApp.csproj",
@@ -194,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\appsettings.json",
               "RelativeDocumentMoniker": "WebApp\\appsettings.json",
@@ -206,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Program.cs",
               "RelativeDocumentMoniker": "WebApp\\Program.cs",
@@ -218,7 +234,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "OrderDetailRepository.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Repositories\\OrderDetailRepository.cs",
               "RelativeDocumentMoniker": "WebApp\\Repositories\\OrderDetailRepository.cs",
@@ -230,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "IOrderRepository.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Repositories\\IOrderRepository.cs",
               "RelativeDocumentMoniker": "WebApp\\Repositories\\IOrderRepository.cs",
@@ -242,7 +258,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "OrderController.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\OrderController.cs",
@@ -254,7 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Models\\Order.cs",
               "RelativeDocumentMoniker": "WebApp\\Models\\Order.cs",
@@ -266,7 +282,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\UserController.cs",
@@ -278,7 +294,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "OrderDetail.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Models\\OrderDetail.cs",
               "RelativeDocumentMoniker": "WebApp\\Models\\OrderDetail.cs",
@@ -290,7 +306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "WebApp\\Data\\ApplicationDbContext.cs",
@@ -302,7 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Repositories\\IUserRepository.cs",
               "RelativeDocumentMoniker": "WebApp\\Repositories\\IUserRepository.cs",
@@ -314,7 +330,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "OrderWithDetailTransform.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Transform\\OrderWithDetailTransform.cs",
               "RelativeDocumentMoniker": "WebApp\\Transform\\OrderWithDetailTransform.cs",
@@ -326,7 +342,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "20250413144657_fix_user_password.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Migrations\\20250413144657_fix_user_password.cs",
               "RelativeDocumentMoniker": "WebApp\\Migrations\\20250413144657_fix_user_password.cs",
@@ -338,7 +354,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Models\\User.cs",
               "RelativeDocumentMoniker": "WebApp\\Models\\User.cs",
@@ -350,7 +366,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "AppSettings.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\helpers\\AppSettings.cs",
               "RelativeDocumentMoniker": "WebApp\\helpers\\AppSettings.cs",
@@ -362,7 +378,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "UserToken.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Models\\UserToken.cs",
               "RelativeDocumentMoniker": "WebApp\\Models\\UserToken.cs",
@@ -374,7 +390,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "20250413131850_add_soft_delete.cs",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Migrations\\20250413131850_add_soft_delete.cs",
               "RelativeDocumentMoniker": "WebApp\\Migrations\\20250413131850_add_soft_delete.cs",
@@ -386,7 +402,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "WebApp\\Properties\\launchSettings.json",
