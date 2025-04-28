@@ -24,6 +24,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<JwtService>();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 var app = builder.Build();
@@ -44,14 +45,14 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-app.Use(async (context, next) =>
-{
-    var appSettings = context.RequestServices.GetRequiredService<IOptions<AppSettings>>().Value;
-    var timeZoneId = appSettings.DefaultTimeZone;
-    var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
-    context.Items["TimeZone"] = timeZoneInfo;
-    await next();
-});
+//app.Use(async (context, next) =>
+//{
+//    var appSettings = context.RequestServices.GetRequiredService<IOptions<AppSettings>>().Value;
+//    var timeZoneId = appSettings.DefaultTimeZone;
+//    var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+//    context.Items["TimeZone"] = timeZoneInfo;
+//    await next();
+//});
 
 if (!app.Environment.IsDevelopment())
 {

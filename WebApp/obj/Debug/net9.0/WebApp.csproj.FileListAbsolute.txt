@@ -1327,3 +1327,9 @@ C:\Users\vund\Downloads\website-dien-thoai-nhom38.git\WebApp\obj\Debug\net9.0\re
 C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\publish\web.config
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\publish\appsettings.Development.json
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\publish\appsettings.json
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\publish\WebApp.deps.json
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\publish\WebApp.runtimeconfig.json
+C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\publish\WebApp.staticwebassets.endpoints.json
