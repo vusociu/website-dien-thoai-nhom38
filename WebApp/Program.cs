@@ -5,6 +5,7 @@ using WebApp.Repositories;
 using WebApp.Middlewares;
 using WebApp.helpers;
 using Microsoft.Extensions.Options;
+using WebApp.Utility;
 //using neondb.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,8 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await dbContext.Database.MigrateAsync();
+    await DataHelpers.ManageDataAsync(scope.ServiceProvider);
     try
     {
         dbContext.Database.CanConnect();
