@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WebApp"
+    "\\WebApp",
+    "\\WebApp\\app",
+    "\\WebApp\\Controllers",
+    "\\WebApp\\DTO"
   ],
-  "SelectedNode": "\\Dockerfile",
+  "SelectedNode": "\\WebApp\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
