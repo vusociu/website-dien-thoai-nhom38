@@ -42,7 +42,7 @@ namespace WebApp.Controllers
             return Ok(_userRepository.update(user));
         }
 
-        [HttpGet("/{id}/detail")]
+        [HttpGet("/{id}/detail-user")]
         public async Task<IActionResult> detailUser([FromRoute] int id)
         {
             User user = _userRepository.byId(id);
