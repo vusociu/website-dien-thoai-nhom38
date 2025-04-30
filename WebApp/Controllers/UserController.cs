@@ -31,7 +31,7 @@ namespace WebApp.Controllers
             return Ok(_userRepository.findAll());
         }
 
-        [HttpPatch("/{id}/update")]
+        [HttpPatch("{id}/update")]
         public async Task<IActionResult> updateUser([FromRoute] int id, [FromBody] UpdateUserDTO dto)
         {
             User user = _userRepository.byId(id);
@@ -42,7 +42,7 @@ namespace WebApp.Controllers
             return Ok(_userRepository.update(user));
         }
 
-        [HttpGet("/{id}/detail-user")]
+        [HttpGet("{id}/detail")]
         public async Task<IActionResult> detailUser([FromRoute] int id)
         {
             User user = _userRepository.byId(id);
@@ -50,10 +50,18 @@ namespace WebApp.Controllers
             {
                 return BadRequest("No data");
             }
-            return Ok(user);
+            return Ok(new
+            {
+                id= user.Id,
+                fullName= user.Fullname,
+                email= user.Email,
+                phone= user.PhoneNumber,
+                address= user.Address,
+                roleId= user.RoleId,
+            });
         }
 
-        [HttpGet("/{id}/list-order")]
+        [HttpGet("{id}/list-order")]
         public async Task<IActionResult> listOrder([FromRoute] int id)
         {
             List<Order> orders = _orderRepository.byUserId(id);
