@@ -70,7 +70,7 @@ namespace WebApp.Controllers
             return Ok(new { orderId = order.Id, message = "Dat hang thanh cong!" });
         }
 
-        [HttpGet("/{id}/detail")]
+        [HttpGet("{id}/detail")]
         public async Task<IActionResult> listOrder([FromRoute] int id)
         {
             Order order = _orderRepository.byId(id);
