@@ -11,12 +11,32 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
 import LoginModal from '../../components/Authentication/LoginModal.jsx';
+import SignUpModal1 from '../../components/Authentication/SignUpModal.jsx';
 import React, { useState } from 'react';
 
 const quantity = 0;
 
 function AppBar() {
   const [openLogin, setOpenLogin] = useState(false);
+  const [openSignUp, setOpenSignUp] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const handleOpenLogin = () => {
+    setOpenLogin(true);
+    setOpenSignUp(false);
+  }
+  const handleCloseLogin = () => {
+    setOpenLogin(false);
+  }
+
+  const handleOpenSignUp = () => {
+    setOpenSignUp(true);
+    setOpenLogin(false);
+  }
+  const handleCloseSignUp = () => {
+    setOpenSignUp(false);
+  }
+
   return (
     <Box
       px={2}
@@ -62,7 +82,7 @@ function AppBar() {
         <TextField
           id="outlined-search"
           // label=""
-          placeholder='Tìm kiếm'
+          placeholder="Tìm kiếm"
           type="search"
           size="small"
           fullWidth
@@ -75,13 +95,25 @@ function AppBar() {
           }}
         />
       </Box>
-      <Button
+      {/* <Button
         variant='contained'
-        onClick={() => setOpenLogin(true)}
+        onClick={handleOpenLogin}
       >
         Đăng nhập
-      </Button>
-      <LoginModal open={openLogin} onClose={() => setOpenLogin(false)} />
+      </Button> */}
+      <LoginModal
+        open={openLogin}
+        onClose={handleCloseLogin}
+        onOpenSignUp={handleOpenSignUp}
+        onLoginSuccess={() => {
+          setIsAuthenticated(true);
+        }}
+      />
+      <SignUpModal1
+        open={openSignUp}
+        onClose={handleCloseSignUp}
+        onOpenLogin={handleOpenLogin}
+      />
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
         <Tooltip title="Giỏ hàng">
           <IconButton>
@@ -90,7 +122,13 @@ function AppBar() {
             </Badge>
           </IconButton>
         </Tooltip>
-        <Account />
+        {!isAuthenticated ? (
+          <Button variant="contained" onClick={handleOpenLogin}>
+            Đăng nhập
+          </Button>
+        ) : (
+          <Account setIsAuthenticated={setIsAuthenticated} />
+        )}
       </Box>
     </Box>
   );

@@ -19,12 +19,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-const LoginModal = ({ open, onClose }) => {
+function LoginModal({ open, onClose, onOpenSignUp, onLoginSuccess }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loginError, setLoginError] = useState(false);
+ 
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -54,6 +55,7 @@ const LoginModal = ({ open, onClose }) => {
     // Simulating API call
     if (username === "admin" && password === "123456") {
       setLoginError(false);
+      onLoginSuccess();
       onClose();
     } else {
       setLoginError(true);
@@ -69,7 +71,11 @@ const LoginModal = ({ open, onClose }) => {
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={(event, reason) => {
+        if (reason !== 'backdropClick') {
+          onClose(event, reason);
+        }
+      }}
       fullScreen={fullScreen}
       maxWidth="sm"
       fullWidth
@@ -101,6 +107,7 @@ const LoginModal = ({ open, onClose }) => {
       <DialogContent
         sx={{
           display: fullScreen ? "flex" : "block",
+          p: fullScreen ? 1 : 3,
           flexDirection: "column",
           justifyContent: "center",
         }}
@@ -112,7 +119,6 @@ const LoginModal = ({ open, onClose }) => {
         )}
 
         <TextField
-          autoFocus
           margin="dense"
           label="Email"
           fullWidth
@@ -131,8 +137,6 @@ const LoginModal = ({ open, onClose }) => {
           fullWidth
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          error={!!errors.password}
-          helperText={errors.password}
           onKeyPress={handleKeyPress}
           InputProps={{
             endAdornment: (
@@ -185,12 +189,12 @@ const LoginModal = ({ open, onClose }) => {
       </DialogActions>
       <Box sx={{ mt: 1, textAlign: "center", width: "100%" }}>
         <Typography variant="body2" component={"span"} sx={{ mr: "5px" }}>
-          Chưa có tài khoản?
+          Bạn chưa có tài khoản?
         </Typography>
         <Link
           component="button"
           variant="body2"
-          onClick={() => console.log("Sign up clicked")}
+          onClick={onOpenSignUp}
           sx={{
             fontWeight: "500",
             textDecoration: "none",

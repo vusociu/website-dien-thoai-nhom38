@@ -18,6 +18,7 @@ const Item = ({ product, onClick }) => {
           transform: "scale(1.02)",
           cursor: "pointer",
           boxShadow: 2,
+          color: "primary.main",
         },
         display: "flex",
         flexDirection: "column",
