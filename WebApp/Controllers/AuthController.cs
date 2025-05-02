@@ -23,6 +23,11 @@ namespace WebApp.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> register(RegisterDTO dto)
         {
+            var existUser = _repository.getByEmail(dto.email);
+            if (existUser!=null)
+            {
+                return BadRequest(new { message = "Email đã được đăng ký, vui lòng thử lại" });
+            }
             var user = new User
             {
                 Email = dto.email,
