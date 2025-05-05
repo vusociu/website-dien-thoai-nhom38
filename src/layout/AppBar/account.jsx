@@ -9,32 +9,29 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
+import { useNavigate } from 'react-router-dom';
 
-
-function Account({ setIsAuthenticated }) {
+function Account({ logout }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
   const handleLogout = () => {
-    setIsAuthenticated(false);
+    logout();
     handleClose();
+    navigate('/');
   };
+
   return (
-      <div>
-      {/* <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        <AccountCircleIcon sx={{ width: 32, height: 32 }}/>
-      </Button> */}
+    <div>
       <Tooltip title="Tài khoản">
         <IconButton
           onClick={handleClick}
@@ -56,28 +53,26 @@ function Account({ setIsAuthenticated }) {
           'aria-labelledby': 'basic-button',
         }}
       >
-        {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem> */}
-      <MenuItem onClick={handleClose}>
-        <Avatar sx={{ width: 28, height: 28 , mr: 2}}/> 
-        Thông tin tài khoản
-      </MenuItem>
-      <Divider />
-      <MenuItem onClick={handleClose}>
-        <ListItemIcon>
-          <Settings fontSize="small" />
-        </ListItemIcon>
-        Cài đặt
-      </MenuItem>
-      <MenuItem onClick={handleLogout}>
-        <ListItemIcon>
-          <Logout fontSize="small" />
-        </ListItemIcon>
-        Đăng xuất
-      </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Avatar sx={{ width: 28, height: 28 , mr: 2}}/> 
+          Thông tin tài khoản
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Cài đặt
+        </MenuItem>
+        <MenuItem onClick={handleLogout}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Đăng xuất
+        </MenuItem>
       </Menu>
     </div>
   );
 }
+
 export default Account;

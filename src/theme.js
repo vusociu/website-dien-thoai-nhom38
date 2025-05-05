@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material/styles'
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1770FF",
+      main: "#198CFF",
     },
     error: {
       main: "#FF4C57",
@@ -28,6 +28,11 @@ const theme = createTheme({
         disableRipple: true,
         disableElevation: true,
       },
+      styleOverrides: {
+        root: {
+          borderRadius: '8px',
+        }
+      }
     },
     MuiOutlinedInput: {
       styleOverrides: {
@@ -43,7 +48,14 @@ const theme = createTheme({
       defaultProps: {
         disableRipple: true,
       }
-    }
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: '10px',
+        },
+      },
+    },
   },
 });
 

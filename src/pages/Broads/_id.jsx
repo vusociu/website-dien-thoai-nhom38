@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import AppBar from '../../layout/AppBar/index.jsx';
 import ListItems from '../../layout/ListItems/index.jsx';
 import Productions from '../../components/Product/index.jsx';
+import ScrollToTop from '../../layout/AppBar/ScrollToTop.jsx';
 
 function Broad() {
     return (
@@ -23,10 +24,10 @@ function Broad() {
             <ListItems />
             <Productions />
           </Box>
+          <ScrollToTop />
         </Container>
       </>
     );
   }
   
-  export default Broad
-  
+  export default Broad;

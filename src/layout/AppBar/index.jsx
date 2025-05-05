@@ -13,13 +13,16 @@ import { Button } from '@mui/material';
 import LoginModal from '../../components/Authentication/LoginModal.jsx';
 import SignUpModal1 from '../../components/Authentication/SignUpModal.jsx';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const quantity = 0;
 
 function AppBar() {
   const [openLogin, setOpenLogin] = useState(false);
   const [openSignUp, setOpenSignUp] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+  const { isAuthenticated, login, logout } = useAuth();
 
   const handleOpenLogin = () => {
     setOpenLogin(true);
@@ -36,6 +39,14 @@ function AppBar() {
   const handleCloseSignUp = () => {
     setOpenSignUp(false);
   }
+
+  const handleCartClick = () => {
+    if (isAuthenticated) {
+      navigate('/cart');
+    } else {
+      handleOpenLogin();
+    }
+  };
 
   return (
     <Box
@@ -58,7 +69,9 @@ function AppBar() {
             fontWeight: "bold",
             fontSize: "1.2rem",
             color: "primary.main",
+            cursor: "pointer"
           }}
+          onClick={() => navigate('/')}
         >
           Project
         </Typography>
@@ -81,7 +94,6 @@ function AppBar() {
       >
         <TextField
           id="outlined-search"
-          // label=""
           placeholder="Tìm kiếm"
           type="search"
           size="small"
@@ -95,18 +107,13 @@ function AppBar() {
           }}
         />
       </Box>
-      {/* <Button
-        variant='contained'
-        onClick={handleOpenLogin}
-      >
-        Đăng nhập
-      </Button> */}
       <LoginModal
         open={openLogin}
         onClose={handleCloseLogin}
         onOpenSignUp={handleOpenSignUp}
         onLoginSuccess={() => {
-          setIsAuthenticated(true);
+          login({ username: "admin" }); // Thêm thông tin user khi login thành công
+          handleCloseLogin();
         }}
       />
       <SignUpModal1
@@ -116,7 +123,7 @@ function AppBar() {
       />
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
         <Tooltip title="Giỏ hàng">
-          <IconButton>
+          <IconButton onClick={handleCartClick}>
             <Badge badgeContent={quantity} color="error" showZero max={99}>
               <ShoppingCartIcon sx={{ color: "primary.main" }} />
             </Badge>
@@ -127,7 +134,7 @@ function AppBar() {
             Đăng nhập
           </Button>
         ) : (
-          <Account setIsAuthenticated={setIsAuthenticated} />
+          <Account logout={logout} />
         )}
       </Box>
     </Box>

@@ -4,12 +4,15 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from './theme'
+import { AuthProvider } from './context/AuthContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
+      <AuthProvider>
+        <CssBaseline />
+        <App />
+      </AuthProvider>
     </ThemeProvider>
   </StrictMode>
 )
