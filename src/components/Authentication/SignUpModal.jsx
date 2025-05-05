@@ -18,19 +18,22 @@ import CloseIcon from "@mui/icons-material/Close";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
+import { register } from "../../api/auth";
+
 const SignUpModal = ({ open, onClose, onOpenLogin }) => {
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    address: "",
-    password: "",
-    confirmPassword: ""
+    fullName: "string",
+    email: "string@string.com",
+    phone: "0123456789",
+    address: "string",
+    password: "string",
+    confirmPassword: "string"
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [SignUpError, setSignUpError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   const theme = useTheme();
@@ -55,11 +58,11 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
         break;
       case "password":
         if (!value) error = "Mật khẩu là bắt buộc";
-        // else if (value.length < 8) error = "Password must be at least 8 characters";
-        // else if (!/(?=.*[A-Z])/.test(value)) error = "Include at least one uppercase letter";
-        // else if (!/(?=.*[a-z])/.test(value)) error = "Include at least one lowercase letter";
-        // else if (!/(?=.*\d)/.test(value)) error = "Include at least one number";
-        // else if (!/(?=.*[!@#$%^&*])/.test(value)) error = "Include at least one special character";
+        // else if (value.length < 8) error = "Mật khâu phải có ít nhất 8 ký tự";
+        // else if (!/(?=.*[A-Z])/.test(value)) error = "Bao gồm ít nhất một chữ cái viết hoa";
+        // else if (!/(?=.*[a-z])/.test(value)) error = "Bao gồm ít nhất một chữ cái viết thường";
+        // else if (!/(?=.*\d)/.test(value)) error = "Bao gồm ít nhất một chữ số";
+        // else if (!/(?=.*[!@#$%^&*])/.test(value)) error = "Bao gồm ít nhất một ký tự đặc biệt";
         break;
       case "confirmPassword":
         if (!value) error = "Vui lòng nhập lại mật khẩu";
@@ -79,7 +82,6 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
 
   const handleSignUp = async(e) => {
     e.preventDefault();
-    setLoading(true);
     
     // Validate all fields
     const newErrors = {};
@@ -90,16 +92,25 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      setLoading(false);
       return;
     }
+    setLoading(true);
 
     try {
-      // Simulated API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const userData = {
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        password: formData.password,
+        roleId: 0,
+      };
+      const result = await register(userData);
+      console.log("Đăng ký thành công:", result);
       onClose();
     } catch (error) {
-      console.error("Signup failed:", error);
+      console.error("Signup failed:", error.message);
+      setSignUpError(true);
     } finally {
       setLoading(false);
     }
@@ -289,7 +300,7 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
           fullWidth
           variant="contained"
           onClick={handleSignUp}
-          disabled={Object.keys(errors).length > 0}
+          disabled={Object.values(errors).some(error => !!error)}
           sx={{
             py: 1.5,
             textTransform: "none",
