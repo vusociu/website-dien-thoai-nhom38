@@ -10,6 +10,15 @@ using WebApp.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", policy =>
+    {
+        policy.AllowAnyOrigin() // Allow all origins
+              .AllowAnyHeader() // Allow all headers
+              .AllowAnyMethod(); // Allow all methods
+    });
+});
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -65,6 +74,7 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseCors("AllowAllOrigins");
 app.UseRouting();
 app.UseAuthorization();
 //app.UseMiddleware<AuthMiddleware>();
