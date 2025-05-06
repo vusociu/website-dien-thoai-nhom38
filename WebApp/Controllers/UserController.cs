@@ -83,5 +83,28 @@ namespace WebApp.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("{id}/card")]
+        public async Task<IActionResult> listOrderInCard([FromRoute] int id)
+        {
+            List<Order> orders = _orderRepository.byUserId(id);
+            int[] orderIds = orders.Select(o => o.Id).ToArray();
+            List<OrderDetail> orderDetails = _orderDetailRepository.byOrderIds(orderIds);
+            int[] productIds = orderDetails.Select(o => o.ProductId).ToArray();
+            List<Product> products = _productRepository.byIds(productIds);
+            var result = orders.Select(order =>
+            {
+                var matchingDetail = orderDetails.FirstOrDefault(detail => detail.OrderId == order.Id);
+                var matchingProduct = products.FirstOrDefault(product => product.Id == matchingDetail.ProductId);
+                return new OrderWithDetailTransform
+                {
+                    order = order,
+                    orderDetail = matchingDetail,
+                    product = matchingProduct
+                };
+            }).ToList();
+
+            return Ok(result);
+        }
     }
 }
