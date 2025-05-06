@@ -15,14 +15,14 @@ import SignUpModal1 from '../../components/Authentication/SignUpModal.jsx';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-
-const quantity = 0;
+import { useCart } from '../../context/CartContext';
 
 function AppBar() {
   const [openLogin, setOpenLogin] = useState(false);
   const [openSignUp, setOpenSignUp] = useState(false);
   const navigate = useNavigate();
   const { isAuthenticated, login, logout } = useAuth();
+  const { cartItems } = useCart();
 
   const handleOpenLogin = () => {
     setOpenLogin(true);
@@ -47,6 +47,8 @@ function AppBar() {
       handleOpenLogin();
     }
   };
+
+  const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <Box
@@ -124,7 +126,7 @@ function AppBar() {
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
         <Tooltip title="Giỏ hàng">
           <IconButton onClick={handleCartClick}>
-            <Badge badgeContent={quantity} color="error" showZero max={99}>
+            <Badge badgeContent={cartItemCount} color="error" showZero max={99}>
               <ShoppingCartIcon sx={{ color: "primary.main" }} />
             </Badge>
           </IconButton>

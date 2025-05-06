@@ -12,9 +12,9 @@ import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 
 import AppBar from "../../layout/AppBar/index.jsx";
-import Cart from "../../components/Cart/index.jsx";
+import Checkout from '../../components/Checkout';
 
-const CartPage = () => {
+const CheckoutPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const navigate = useNavigate();
@@ -47,17 +47,17 @@ const CartPage = () => {
                 transform: "translateX(-50%)",
               }}
             >
-              Giỏ hàng
+              Thanh toán
             </Typography>
           </Toolbar>
         </MuiAppBar>
       ) : (
         <AppBar />
       )}
-      <Cart />
+      <Checkout />
     </Container>
   )
 
-}
+};
 
-export default CartPage;
+export default CheckoutPage;

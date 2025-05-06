@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
-  Card,
   Typography,
   Button,
   Dialog,
@@ -11,51 +11,23 @@ import {
   TextField,
   Grid,
   Paper,
-  Divider,
-  Container,
   Alert,
   Stack
 } from "@mui/material";
 import CartItem from "./CartItem";
+import { useCart } from "../../context/CartContext";
 
 const Cart = () => {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      name: "Áo thun nam",
-      price: 299000,
-      quantity: 1,
-      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
-    },
-    {
-      id: 2,
-      name: "Quần jean nữ",
-      price: 499000,
-      quantity: 1,
-      image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246"
-    },
-    {
-      id: 3,
-      name: "Quần jean nữ",
-      price: 499000,
-      quantity: 1,
-      image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246"
-    }
-  ]);
+  const { cartItems, removeFromCart, updateQuantity, selectItemsForCheckout } = useCart();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
-  const [deliveryAddress, setDeliveryAddress] = useState("");
   const [deliveryTime, setDeliveryTime] = useState("");
+  const navigate = useNavigate();
 
-  const totalPrice = useMemo(() =>
-    items.reduce((sum, item) => sum + item.price * item.quantity, 0),
-    [items]
-  );
+  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handleUpdateQuantity = (id, newQuantity) => {
-    setItems(prev =>
-      prev.map(item => item.id === id ? { ...item, quantity: newQuantity } : item)
-    );
+    updateQuantity(id, newQuantity);
   };
 
   const handleDeleteClick = (item) => {
@@ -64,70 +36,88 @@ const Cart = () => {
   };
 
   const handleConfirmDelete = () => {
-    setItems(prev => prev.filter(item => item.id !== itemToDelete.id));
-    setDeleteDialogOpen(false);
-    setItemToDelete(null);
+    if (itemToDelete) {
+      removeFromCart(itemToDelete.id);
+      setDeleteDialogOpen(false);
+      setItemToDelete(null);
+    }
+  };
+
+  const handleCheckout = () => {
+    if (!deliveryTime || cartItems.length === 0) return;
+
+    const itemsWithDeliveryTime = cartItems.map(item => ({
+      ...item,
+      deliveryTime
+    }));
+    
+    selectItemsForCheckout(itemsWithDeliveryTime);
+    navigate('/checkout');
   };
 
   return (
-    <Box px={{xs:1, md: 2}}>
+    <Box px={{ xs: 1, md: 2 }} mt={{ xs: 6, md: 0 }}>
       <Box py={2}>
-        <Typography variant="h5" gutterBottom sx={{textTransform: "uppercase"}}>
+        <Typography
+          variant="h5"
+          gutterBottom
+          sx={{
+            display: { xs: "none", md: "block" },
+            textTransform: "uppercase",
+          }}
+        >
           Giỏ hàng
         </Typography>
-        {items.length === 0 ? (
+        {cartItems.length === 0 ? (
           <Alert severity="info">Giỏ hàng trống</Alert>
         ) : (
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, md: 9 }}>
-              {items.map(item => (
-                <CartItem 
+              {cartItems.map((item) => (
+                <CartItem
                   key={item.id}
-                  item={item} 
+                  item={item}
                   onUpdateQuantity={handleUpdateQuantity}
-                  onDelete={handleDeleteClick} 
+                  onDelete={handleDeleteClick}
                 />
               ))}
             </Grid>
             <Grid size={{ xs: 12, md: 3 }}>
-              <Paper 
+              <Paper
                 elevation={1}
-                sx={{ 
-                  p: {xs: 2, md: 3}, 
-                  position: { md: "sticky"}, 
+                sx={{
+                  p: { xs: 2, md: 3 },
+                  position: { md: "sticky" },
                   top: { md: 24 },
                   mb: { xs: 15, md: 0 },
                 }}
               >
                 <Stack spacing={1.8}>
-                  <Typography variant="h6">
-                    Thông tin đơn hàng
-                  </Typography>
-                  <Divider />
-                  <TextField
-                    fullWidth
-                    label="Địa chỉ nhận hàng"
-                    value={deliveryAddress}
-                    onChange={e => setDeliveryAddress(e.target.value)}
-                    multiline
-                    rows={2}
-                  />
+                  <Typography variant="h6">Thời gian nhận hàng</Typography>
                   <TextField
                     fullWidth
                     size="small"
-                    label="Thời gian giao hàng"
-                    type="datetime-local"
+                    type="date"
                     value={deliveryTime}
-                    onChange={e => setDeliveryTime(e.target.value)}
+                    onChange={(e) => setDeliveryTime(e.target.value)}
                     InputLabelProps={{ shrink: true }}
+                    inputProps={{
+                      min: new Date().toISOString().slice(0, 10),
+                    }}
                   />
-                  <Box 
+                  <Box
                     sx={{
-                      display: {xs: "none", md: "block"},
+                      display: { xs: "none", md: "block" },
                     }}
                   >
-                    <Box display="flex" justifyContent="space-between" alignItems="center">
-                      <Typography variant="subtitle2" sx={{fontSize: "18px"}}>Tổng cộng:</Typography>
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Typography variant="subtitle2" sx={{ fontSize: "18px" }}>
+                        Tổng cộng:
+                      </Typography>
                       <Typography variant="h6" color="primary">
                         {totalPrice.toLocaleString("vi-VN")}₫
                       </Typography>
@@ -138,17 +128,19 @@ const Cart = () => {
                       color="primary"
                       size="large"
                       fullWidth
-                      disabled={!deliveryAddress || !deliveryTime}
+                      disabled={!deliveryTime || cartItems.length === 0}
+                      onClick={handleCheckout}
+                      sx={{ mt: 2 }}
                     >
-                      Đặt hàng
+                      Thanh toán
                     </Button>
                   </Box>
                 </Stack>
               </Paper>
-              <Paper 
+              <Paper
                 elevation={4}
-                sx={{ 
-                  p: 2, 
+                sx={{
+                  p: 2,
                   position: "fixed",
                   display: { md: "none" },
                   bottom: 0,
@@ -157,22 +149,29 @@ const Cart = () => {
                   zIndex: 1000,
                 }}
               >
-                    <Box display="flex" justifyContent="space-between" alignItems="center">
-                      <Typography variant="subtitle2" sx={{fontSize: "16px"}}>Tổng cộng:</Typography>
-                      <Typography variant="h6" color="primary">
-                        {totalPrice.toLocaleString("vi-VN")}₫
-                      </Typography>
-                    </Box>
+                <Box
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Typography variant="subtitle2" sx={{ fontSize: "16px" }}>
+                    Tổng cộng:
+                  </Typography>
+                  <Typography variant="h6" color="primary">
+                    {totalPrice.toLocaleString("vi-VN")}₫
+                  </Typography>
+                </Box>
 
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      fullWidth
-                      disabled={!deliveryAddress || !deliveryTime}
-                    >
-                      Đặt hàng
-                    </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  fullWidth
+                  disabled={!deliveryTime || cartItems.length === 0}
+                  onClick={handleCheckout}
+                >
+                  Thanh toán
+                </Button>
               </Paper>
             </Grid>
           </Grid>
@@ -187,7 +186,9 @@ const Cart = () => {
       >
         <DialogTitle id="delete-dialog-title">Xóa sản phẩm</DialogTitle>
         <DialogContent>
-          <Typography>Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?</Typography>
+          <Typography>
+            Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?
+          </Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setDeleteDialogOpen(false)}>Hủy</Button>

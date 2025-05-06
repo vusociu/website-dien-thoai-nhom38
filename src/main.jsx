@@ -5,13 +5,16 @@ import App from './App.jsx'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from './theme'
 import { AuthProvider } from './context/AuthContext'
+import { CartProvider } from './context/CartContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <CssBaseline />
-        <App />
+        <CartProvider>
+          <CssBaseline />
+          <App />
+        </CartProvider>
       </AuthProvider>
     </ThemeProvider>
   </StrictMode>

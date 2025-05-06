@@ -4,7 +4,9 @@ import { createTheme } from '@mui/material/styles'
 const theme = createTheme({
   palette: {
     primary: {
+      light: "#BCE0FF",
       main: "#198CFF",
+      dark: "#1E47B9"
     },
     error: {
       main: "#FF4C57",
@@ -53,6 +55,9 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '10px',
+        },
+        elevation1: {
+          boxShadow: '0 1px 2px 0 rgba(60,64,67,.1), 0 2px 6px 2px rgba(60,64,67,.15)',
         },
       },
     },

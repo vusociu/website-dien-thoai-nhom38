@@ -33,7 +33,6 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [SignUpError, setSignUpError] = useState(false);
-  const [loading, setLoading] = useState(false);
 
 
   const theme = useTheme();
@@ -94,7 +93,6 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
       setErrors(newErrors);
       return;
     }
-    setLoading(true);
 
     try {
       const userData = {
@@ -111,8 +109,6 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
     } catch (error) {
       console.error("Signup failed:", error.message);
       setSignUpError(true);
-    } finally {
-      setLoading(false);
     }
   };
 

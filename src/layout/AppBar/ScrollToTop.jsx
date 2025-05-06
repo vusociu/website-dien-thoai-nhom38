@@ -4,6 +4,7 @@ import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import { Tooltip } from '@mui/material';
 
 function ScrollToTop() {
   const trigger = useScrollTrigger({
@@ -25,19 +26,22 @@ function ScrollToTop() {
         role="presentation"
         sx={{ position: 'fixed', bottom: 24, right: 24, zIndex: 1000 }}
       >
-        <Fab 
-          size="small" 
-          aria-label="scroll back to top"
-          sx={{
-            bgcolor: 'primary.main',
-            color: 'white',
-            '&:hover': {
-              bgcolor: 'primary.dark',
-            },
-          }}
-        >
-          <KeyboardArrowUpIcon />
-        </Fab>
+        <Tooltip title="Lên đầu trang" arrow placement="left">
+          <Fab 
+            size="small" 
+            aria-label="scroll back to top"
+            sx={{
+              bgcolor: 'primary.light',
+              color: 'primary.dark',
+              '&:hover': {
+                bgcolor: 'primary.dark',
+                color: 'primary.light',
+              },
+            }}
+          >
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </Tooltip>
       </Box>
     </Fade>
   );

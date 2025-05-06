@@ -104,7 +104,7 @@ const CartItem = ({ item, onUpdateQuantity, onDelete }) => {
               type="tel"
               size="small"
               inputProps={{ 
-                min: 1,
+                
                 sx: {
                   textAlign: "center",
                   py: "4px",
