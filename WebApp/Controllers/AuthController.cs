@@ -35,7 +35,8 @@ namespace WebApp.Controllers
                 Fullname = dto.fullName,
                 PhoneNumber = dto.phone,
                 Address = dto.address,
-                RoleId = dto.roleId
+                RoleId = dto.roleId,
+                Avatar = ""
             };
 
             return Created("Success", _repository.create(user));

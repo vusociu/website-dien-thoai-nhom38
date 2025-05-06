@@ -3,6 +3,7 @@ using WebApp.Data;
 using WebApp.Models;
 using System.Collections.Generic;
 using System.Linq;
+using WebApp.Repositories;
 
 namespace WebApp.Controllers
 {
@@ -11,10 +12,12 @@ namespace WebApp.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(ApplicationDbContext context, ICategoryRepository categoryRepository)
         {
             _context = context;
+            _categoryRepository = categoryRepository;
         }
 
         // GET: api/products
@@ -33,7 +36,13 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-            return product;
+
+            Category category = _categoryRepository.byId(product.CategoryId);
+            return Ok(new {
+                product,
+                categoryTitle = category.Name
+            });
+
         }
 
         // POST: api/products
