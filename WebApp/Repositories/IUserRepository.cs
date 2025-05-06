@@ -8,7 +8,7 @@ namespace WebApp.Repositories
         User getByEmail(string email);
 
         List<User> findAll();
-        User byId(int id);
+        User? byId(int id);
         User update(User updateUser);
     }
 }

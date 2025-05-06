@@ -19,6 +19,7 @@ namespace WebApp.Models
         [Required, MaxLength(200)]
         public string Password { get; set; }
         public int RoleId { get; set; }
+        public string Avatar { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; }
         public SoftDelete Deleted { get; set; } = SoftDelete.NO_DELETED;

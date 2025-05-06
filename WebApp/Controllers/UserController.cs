@@ -34,7 +34,11 @@ namespace WebApp.Controllers
         [HttpPatch("{id}/update")]
         public async Task<IActionResult> updateUser([FromRoute] int id, [FromBody] UpdateUserDTO dto)
         {
-            User user = _userRepository.byId(id);
+            var user = _userRepository.byId(id);
+            if (user == null)
+            {
+                return BadRequest("No data");
+            }
             user.Fullname = dto.fullName;
             user.PhoneNumber = dto.phone;
             user.Address = dto.address;
