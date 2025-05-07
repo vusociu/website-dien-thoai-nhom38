@@ -33,6 +33,7 @@ const Checkout = () => {
     fullName: user?.fullName || '',
     phone: user?.phone || '',
     address: user?.address || '',
+    note: '',
     paymentMethod: 'cod'
   });
 
@@ -236,24 +237,41 @@ const Checkout = () => {
                 label="Số điện thoại"
                 type="tel"
                 name="phone"
-                value={formData.phone}
+                value={user.role}
                 onChange={handleInputChange}
                 error={!!errors.phone}
                 helperText={errors.phone}
               />
-              <TextField
-                required
-                fullWidth
-                size="small"
-                label="Địa chỉ nhận hàng"
-                name="address"
-                value={formData.address}
-                onChange={handleInputChange}
-                error={!!errors.address}
-                helperText={errors.address}
-                multiline
-                rows={3}
-              />
+                            <Grid container spacing={2}>
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    required
+                    fullWidth
+                    size='small'
+                    label="Địa chỉ nhận hàng"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    error={!!errors.address}
+                    helperText={errors.address}
+                    multiline
+                    rows={3}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    fullWidth
+                    size='small'
+                    label="Ghi chú"
+                    name="note"
+                    value={formData.note}
+                    onChange={handleInputChange}
+                    multiline
+                    rows={3}
+                    placeholder="Ghi chú về đơn hàng (nếu có)"
+                  />
+                </Grid>
+              </Grid>
             </Stack>
           </Paper>
         </Grid>
