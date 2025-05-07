@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -12,7 +12,8 @@ import {
   Grid,
   Paper,
   Alert,
-  Stack
+  Stack,
+  Link as MuiLink,
 } from "@mui/material";
 import CartItem from "./CartItem";
 import { useCart } from "../../context/CartContext";
@@ -69,7 +70,13 @@ const Cart = () => {
           Giỏ hàng
         </Typography>
         {cartItems.length === 0 ? (
-          <Alert severity="info">Giỏ hàng trống</Alert>
+          <Alert severity="info">
+            Giỏ hàng trống.
+            <MuiLink component={Link} to="/" sx={{ ml: 1 }}>
+              Quay lại trang mua hàng
+            </MuiLink>
+          </Alert>
+          
         ) : (
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, md: 9 }}>

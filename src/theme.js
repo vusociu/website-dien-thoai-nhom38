@@ -8,6 +8,9 @@ const theme = createTheme({
       main: "#198CFF",
       dark: "#1E47B9"
     },
+    secondary: {
+      main: "#FF8C19",
+    },
     error: {
       main: "#FF4C57",
     },

@@ -10,6 +10,7 @@ import {
   Typography,
   Box,
   Link,
+  CircularProgress,
   InputAdornment,
   useMediaQuery,
   Alert
@@ -19,46 +20,50 @@ import CloseIcon from "@mui/icons-material/Close";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
+import { login } from "../../api/auth";
+import { setToken, setUserInfo } from "../../utils/storage";
+
 function LoginModal({ open, onClose, onOpenSignUp, onLoginSuccess }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loginError, setLoginError] = useState(false);
- 
+  const [loading, setLoading] = useState(false);
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // const validateForm = () => {
-  //   const newErrors = {};
-    
-  //   if (!username || username.length < 3) {
-  //     newErrors.username = "Username must be at least 3 characters long";
-  //   }
-  //   if (!/^[a-zA-Z0-9]+$/.test(username)) {
-  //     newErrors.username = "Username can only contain letters and numbers";
-  //   }
-    
-  //   if (!password || password.length < 8) {
-  //     newErrors.password = "Password must be at least 8 characters long";
-  //   }
-  //   if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(password)) {
-  //     newErrors.password = "Password must contain uppercase, lowercase, number and special character";
-  //   }
+  const handleLogin = async () => {
+    setLoginError(false);
+    setErrors({});
+    setLoading(true);
 
-  //   setErrors(newErrors);
-  //   return Object.keys(newErrors).length === 0;
-  // };
+    if (!username || !password) {
+      setErrors({
+        username: !username ? "Vui lòng nhập email" : "",
+        password: !password ? "Vui lòng nhập mật khẩu" : "",
+      });
+      return;
+    }
 
-  const handleLogin = () => {
-    // Simulating API call
-    if (username === "admin" && password === "123456") {
-      setLoginError(false);
-      onLoginSuccess();
+    try {
+      const res = await login({ email: username, password: password });
+      setToken(res.token);
+      setUserInfo({
+        fullName: res.fullName,
+        role: res.role,
+      });
+      onLoginSuccess({
+        fullName: res.fullName,
+        role: res.role
+      });
       onClose();
-    } else {
+    } catch (err) {
+      console.error("Login error:", err);
       setLoginError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -173,19 +178,26 @@ function LoginModal({ open, onClose, onOpenSignUp, onLoginSuccess }) {
       </DialogContent>
 
       <DialogActions sx={{ p: 3, pt: 2 }}>
-        <Button
-          fullWidth
-          variant="contained"
-          onClick={handleLogin}
-          disabled={!username || !password}
-          sx={{
-            py: 1.5,
-            textTransform: "none",
-            fontSize: "1rem",
-          }}
-        >
-          Đăng nhập
-        </Button>
+        {loading ? (
+          <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={handleLogin}
+            disabled={!username || !password}
+            sx={{
+              py: 1.5,
+              textTransform: "none",
+              fontSize: "1rem",
+            }}
+          >
+            Đăng nhập
+          </Button>
+        )}
+
       </DialogActions>
       <Box sx={{ mt: 1, textAlign: "center", width: "100%" }}>
         <Typography variant="body2" component={"span"} sx={{ mr: "5px" }}>

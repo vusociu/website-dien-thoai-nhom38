@@ -6,8 +6,10 @@ import {
   Paper,
   Button,
   Stack,
+  IconButton,
   Tooltip
 } from "@mui/material";
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -38,6 +40,7 @@ const sampleProducts = [
 ];
 
 const Item = ({ productId = 1 }) => {
+  const { isAuthenticated } = useAuth();
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
@@ -45,6 +48,9 @@ const Item = ({ productId = 1 }) => {
   const product = sampleProducts.find(p => p.id === productId) || sampleProducts[0];
 
   const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      return;
+    }
     addToCart({
       id: product.id,
       name: product.name,
@@ -66,7 +72,8 @@ const Item = ({ productId = 1 }) => {
         transition: "transform 0.2s",
         "&:hover": {
           transform: "scale(1.02)",
-          boxShadow: "0 1px 2px 0 rgba(60,64,67,.1),0 2px 6px 2px rgba(60,64,67,.15)",
+          boxShadow:
+            "0 1px 2px 0 rgba(60,64,67,.1),0 2px 6px 2px rgba(60,64,67,.15)",
           cursor: "pointer",
           color: "primary.main",
         },
@@ -91,7 +98,7 @@ const Item = ({ productId = 1 }) => {
           flexGrow: 1,
           justifyContent: "space-between",
           p: 1,
-          gap: 1
+          gap: 1,
         }}
       >
         <Typography
@@ -109,22 +116,39 @@ const Item = ({ productId = 1 }) => {
         </Typography>
 
         <Stack spacing={1}>
+          <Box 
+            sx={{ 
+              display: "flex", 
+              justifyContent: "center",
+              
+            }}
+          >
+            <Tooltip title="Thêm vào giỏ hàng" placement="right">
+              <IconButton 
+               onClick={handleAddToCart}
+               sx={{
+                border: "0.5px solid",
+                borderColor: "divider", 
+               }}
+              >
+                <AddShoppingCartOutlinedIcon sx={{ color: "secondary.main" }} />
+              </IconButton>
+            </Tooltip>
+          </Box>
           <Typography variant="price">
             {product.price.toLocaleString("vi-VN")}₫
           </Typography>
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Rating value={product.rating} precision={0.1} readOnly size="small" />
+            <Rating
+              value={product.rating}
+              precision={0.1}
+              readOnly
+              size="small"
+            />
             <Typography variant="body2" color="text.secondary">
               {product.rating}
             </Typography>
           </Box>
-          <Button
-            variant="contained"
-            onClick={handleAddToCart}
-            fullWidth
-          >
-            Thêm vào giỏ
-          </Button>
         </Stack>
       </Box>
     </Paper>

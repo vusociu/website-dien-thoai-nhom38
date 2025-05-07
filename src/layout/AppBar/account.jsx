@@ -30,6 +30,11 @@ function Account({ logout }) {
     navigate('/');
   };
 
+  const handleProfile = () => {
+    handleClose();
+    navigate("/edit-profile");
+  };
+
   return (
     <div>
       <Tooltip title="Tài khoản">
@@ -53,7 +58,7 @@ function Account({ logout }) {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleProfile}>
           <Avatar sx={{ width: 28, height: 28 , mr: 2}}/> 
           Thông tin tài khoản
         </MenuItem>

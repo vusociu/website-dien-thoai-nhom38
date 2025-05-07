@@ -69,7 +69,6 @@ const Checkout = () => {
     return error;
   };
 
-  // Tính tổng tiền từ selectedItems
   const totalPrice = selectedItems?.reduce((sum, item) => sum + (item.price * item.quantity), 0) || 0;
 
   const handleInputChange = (e) => {
@@ -99,7 +98,7 @@ const Checkout = () => {
     try {
       // TODO: Gọi API đặt hàng tại đây
       const orderData = {
-        items: selectedItems.map(({deliveryTime, ...item}) => ({
+        items: selectedItems.map(({ deliveryTime, ...item }) => ({
           ...item,
           expectedDeliveryDate: deliveryTime
         })),
@@ -107,7 +106,7 @@ const Checkout = () => {
         totalPrice
       };
       console.log('Đặt hàng thành công:', orderData);
-      
+
       // Reset giỏ hàng và chuyển đến trang thông báo thành công
       clearSelectedItems();
       navigate('/checkout/success');
@@ -118,9 +117,19 @@ const Checkout = () => {
 
   if (!selectedItems?.length) {
     return (
-      <Box px={2} py={4}>
+      <Box px={{ xs: 1, md: 2 }} mt={{ xs: 6, md: 0 }} py={2}>
+        <Typography
+          variant="h5"
+          gutterBottom
+          sx={{
+            display: { xs: "none", md: "block" },
+            textTransform: "uppercase"
+          }}
+        >
+          Thanh toán
+        </Typography>
         <Alert severity="info">
-          Không có sản phẩm nào để thanh toán. 
+          Không có sản phẩm nào để thanh toán.
           <MuiLink component={Link} to="/cart" sx={{ ml: 1 }}>
             Quay lại giỏ hàng
           </MuiLink>

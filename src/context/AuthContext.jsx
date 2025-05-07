@@ -1,10 +1,20 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { getToken, getUserInfo, clearAuthData } from '../utils/storage';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = getToken();
+    const userInfo = getUserInfo();
+    if (token && userInfo) {
+      setIsAuthenticated(true);
+      setUser(userInfo);
+    }
+  }, []);
 
   const login = (userData) => {
     setIsAuthenticated(true);
@@ -14,6 +24,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setIsAuthenticated(false);
     setUser(null);
+    clearAuthData();
   };
 
   return (

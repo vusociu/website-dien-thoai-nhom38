@@ -71,7 +71,8 @@ function AppBar() {
             fontWeight: "bold",
             fontSize: "1.2rem",
             color: "primary.main",
-            cursor: "pointer"
+            cursor: "pointer",
+            display: { xs: "none", md: "block" },
           }}
           onClick={() => navigate('/')}
         >
@@ -109,15 +110,19 @@ function AppBar() {
           }}
         />
       </Box>
+
+      {/* Gọi login */}
       <LoginModal
         open={openLogin}
         onClose={handleCloseLogin}
         onOpenSignUp={handleOpenSignUp}
-        onLoginSuccess={() => {
-          login({ username: "admin" }); // Thêm thông tin user khi login thành công
+        onLoginSuccess={(userData) => {
+          login(userData); 
+          console.log("Login success");
           handleCloseLogin();
         }}
       />
+      {/* Gọi sign up */}
       <SignUpModal1
         open={openSignUp}
         onClose={handleCloseSignUp}
