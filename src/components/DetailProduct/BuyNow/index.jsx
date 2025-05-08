@@ -1,15 +1,45 @@
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import { deepOrange } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
+let productApi = 'https://website-dien-thoai-nhom38-production.up.railway.app/api/Products';
+
 function BuyNow() {
+    const { id } = useParams();
     const [quantity, setQuantity] = React.useState(1); // State quản lý số lượng
+    const [price, setPrice] = React.useState(0);
+// call API
+    useEffect(() => {
+        const fetchProductPrice = async () => {
+            try {
+                const response = await fetch(`${productApi}/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error("Failed to fetch product data");
+                }
+                const data = await response.json();
+                if (data) {
+                    setPrice(data.price); // Lấy giá sản phẩm từ API
+                } else {
+                    console.error("Product data is empty");
+                }
+            } catch (error) {
+                console.error("Error fetching product price:", error);
+            }
+        };
+    
+        fetchProductPrice();
+    }, [id]);
 
     const handleIncrease = () => {
         setQuantity((prev) => prev + 1);
@@ -26,7 +56,7 @@ function BuyNow() {
             padding: 2,
             maxWidth: '300px',
             minWidth: '300px',
-            height: '350px',
+            height: '300px',
             // height: "fit-content",
             backgroundColor: 'white',
             borderRadius: '8px',
@@ -34,7 +64,7 @@ function BuyNow() {
             flexDirection: 'column',   
             flex: 1,
        }}>
-        <Box sx={{
+        {/* <Box sx={{
             height: '65px',
             display: 'flex',
             alignItems: 'center',
@@ -44,7 +74,7 @@ function BuyNow() {
         }}>
             <Avatar sx={{ bgcolor: deepOrange[500], mr: 2 }}>N</Avatar>
             <div>Shop abc</div>
-        </Box>
+        </Box> */}
 
         <Box sx={{ mt: 2 }}>
         <Typography sx={{ fontWeight: 'bold', mb: 1 }}>Số Lượng</Typography>
@@ -61,7 +91,7 @@ function BuyNow() {
         <Box sx={{ mt: 2 }}>
         <Typography sx={{ fontWeight: 'bold', mb: 1 }}>Tạm tính</Typography>
             <Typography sx={{ fontSize: '20px', fontWeight: 'bold', color: 'rgb(255, 66, 78)' }}>
-                {(quantity * 1243540).toLocaleString()}đ
+                {(quantity * price).toLocaleString()}đ
             </Typography>
         </Box>
 

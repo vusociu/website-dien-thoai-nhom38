@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Imgproduct from './imgProduct';
-import Desproduct from './desProduct';
+import Desproduct from '../MainBox/desProduct/index.jsx'
+import Feedback from './Feedback/index.jsx';
 
 
 function MainBox() {
@@ -13,11 +14,7 @@ function MainBox() {
             <Imgproduct/>
             <Desproduct/>
         </Box>
-        <Box sx={{
-            height: '200px',
-            backgroundColor: 'white',
-            borderRadius: '8px',
-        }}>Comment</Box>
+        <Feedback/>
        </Box> 
     );
 }
