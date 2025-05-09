@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using WebApp.Data;
 using WebApp.Models;
 using System.Collections.Generic;
 using System.Linq;
 using WebApp.Repositories;
+
 
 namespace WebApp.Controllers
 {
@@ -11,12 +12,12 @@ namespace WebApp.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
 
-        public ProductsController(ApplicationDbContext context, ICategoryRepository categoryRepository)
+        public ProductsController(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
-            _context = context;
+            _productRepository = productRepository;
             _categoryRepository = categoryRepository;
         }
 
@@ -24,33 +25,32 @@ namespace WebApp.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Product>> GetProducts()
         {
-            return _context.Products.ToList();
+            return _productRepository.GetAll();
         }
 
         // GET: api/products/5
         [HttpGet("{id}")]
         public ActionResult<Product> GetProduct(int id)
         {
-            var product = _context.Products.Find(id);
+            var product = _productRepository.byId(id);
             if (product == null)
             {
                 return NotFound();
             }
 
             Category category = _categoryRepository.byId(product.CategoryId);
-            return Ok(new {
+            return Ok(new
+            {
                 product,
                 categoryTitle = category.Name
             });
-
         }
 
         // POST: api/products
         [HttpPost]
         public ActionResult<Product> CreateProduct(Product product)
         {
-            _context.Products.Add(product);
-            _context.SaveChanges();
+            product = _productRepository.Create(product);
             return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
         }
 
@@ -58,7 +58,7 @@ namespace WebApp.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateProduct(int id, Product product)
         {
-            var existingProduct = _context.Products.Find(id);
+            var existingProduct = _productRepository.byId(id);
             if (existingProduct == null)
             {
                 return NotFound();
@@ -69,9 +69,9 @@ namespace WebApp.Controllers
             existingProduct.Discount = product.Discount;
             existingProduct.Thumbnail = product.Thumbnail;
             existingProduct.Description = product.Description;
-            existingProduct.UpdatedAt = DateTime.Now;
+            existingProduct.UpdatedAt = System.DateTime.Now;
 
-            _context.SaveChanges();
+            _productRepository.Update(existingProduct);
             return NoContent();
         }
 
@@ -79,14 +79,13 @@ namespace WebApp.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {
-            var product = _context.Products.Find(id);
+            var product = _productRepository.byId(id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            _context.Products.Remove(product);
-            _context.SaveChanges();
+            _productRepository.Delete(id);
             return NoContent();
         }
     }
