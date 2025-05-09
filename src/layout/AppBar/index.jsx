@@ -11,7 +11,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
 import LoginModal from '../../components/Authentication/LoginModal.jsx';
-import SignUpModal1 from '../../components/Authentication/SignUpModal.jsx';
+import SignUpModal from '../../components/Authentication/SignUpModal.jsx';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -20,6 +20,7 @@ import { useCart } from '../../context/CartContext';
 function AppBar() {
   const [openLogin, setOpenLogin] = useState(false);
   const [openSignUp, setOpenSignUp] = useState(false);
+  const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
   const { isAuthenticated, login, logout } = useAuth();
   const { cartItems } = useCart();
@@ -64,17 +65,15 @@ function AppBar() {
         borderColor: "divider",
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", gap: 1, mr: 2 }}>
-        <SmartphoneIcon sx={{ color: "primary.main" }} />
+      <Box onClick={() => navigate('/')} sx={{ display: "flex", alignItems: "center", cursor: "pointer", gap: 1, mr: 2 }}>
+        <SmartphoneIcon  sx={{ color: "primary.main" }} />
         <Typography
           sx={{
             fontWeight: "bold",
             fontSize: "1.2rem",
             color: "primary.main",
-            cursor: "pointer",
             display: { xs: "none", md: "block" },
           }}
-          onClick={() => navigate('/')}
         >
           Project
         </Typography>
@@ -101,6 +100,13 @@ function AppBar() {
           type="search"
           size="small"
           fullWidth
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              navigate(`/search?title=${encodeURIComponent(searchText)}`);
+            }
+          }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -123,7 +129,7 @@ function AppBar() {
         }}
       />
       {/* Gọi sign up */}
-      <SignUpModal1
+      <SignUpModal
         open={openSignUp}
         onClose={handleCloseSignUp}
         onOpenLogin={handleOpenLogin}
@@ -137,11 +143,13 @@ function AppBar() {
           </IconButton>
         </Tooltip>
         {!isAuthenticated ? (
-          <Button variant="contained" onClick={handleOpenLogin}>
+          <Button variant="contained" onClick={handleOpenLogin} sx={{display: { xs: "none", md: "block" }}}>
             Đăng nhập
           </Button>
         ) : (
-          <Account logout={logout} />
+          <Box sx={{display: { xs: "none", md: "block" }}}>
+            <Account logout={logout}/>
+          </Box>
         )}
       </Box>
     </Box>

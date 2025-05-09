@@ -19,7 +19,7 @@ const UserProfileEditPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const navigate = useNavigate();
   const handleBack = () => {
-    navigate(-1);
+    navigate("/");
   };
   return (
     <Container disableGutters maxWidth={false} sx={{ height: "100%" }}>
@@ -47,7 +47,7 @@ const UserProfileEditPage = () => {
                 transform: "translateX(-50%)",
               }}
             >
-              Thanh toán
+              Sửa thông tin
             </Typography>
           </Toolbar>
         </MuiAppBar>

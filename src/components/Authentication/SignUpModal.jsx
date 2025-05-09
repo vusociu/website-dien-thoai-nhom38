@@ -106,8 +106,8 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
       const result = await register(userData);
       console.log("Đăng ký thành công:", result);
       onClose();
-    } catch (error) {
-      console.error("Signup failed:", error.message);
+    } catch (err) {
+      console.error("Đăng ký thất bại:", err);
       setSignUpError(true);
     }
   };
@@ -133,7 +133,8 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
         sx: {
           borderRadius: "10px",
           boxShadow: 24,
-          p: 3,
+          px: {xs: 1, md: 3},
+          py: {xs: 2, md: 3},
         },
       }}
     >

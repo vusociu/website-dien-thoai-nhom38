@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -12,19 +12,30 @@ import {
   Alert,
   Avatar
 } from "@mui/material";
-import { styled } from "@mui/system";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+import { useAuth } from '../../context/AuthContext';
 
 const UserProfileEdit = () => {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
-    fullName: "",
-    phone: "",
-    address: ""
+    fullName: user?.fullName || "",
+    phone: user?.phone || "",
+    address: user?.address || ""
   });
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        fullName: user.fullName || "",
+        phone: user.phone || "",
+        address: user.address || ""
+      });
+    }
+  }, [user]);
 
   const [errors, setErrors] = useState({});
   const [snackbar, setSnackbar] = useState({
@@ -101,7 +112,7 @@ const UserProfileEdit = () => {
   };
 
   return (
-    <Box px={{ xs: 1, md: 2 }} mt={{ xs: 6, md: 0 }} py={4}>
+    <Box px={{ xs: 1, md: 2 }} py={{xs: 8, md: 4}}>
       <Paper sx={{ p: 3, maxWidth: 600, margin: "0 auto" }}>
         <Stack spacing={3}>
           <Box sx={{ textAlign: "center" }}>

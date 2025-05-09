@@ -24,7 +24,7 @@ function ScrollToTop() {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: 'fixed', bottom: 24, right: 24, zIndex: 1000 }}
+        sx={{ position: 'fixed', bottom: {xs: 80, md: 24}, right: 24, zIndex: 1000 }}
       >
         <Tooltip title="Lên đầu trang" arrow placement="left">
           <Fab 

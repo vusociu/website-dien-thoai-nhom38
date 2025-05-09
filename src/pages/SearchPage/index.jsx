@@ -4,17 +4,17 @@ import Box from '@mui/material/Box';
 import AppBar from '../../layout/AppBar/index.jsx';
 import MobileNav from '../../layout/AppBar/MobileNav.jsx';
 import ListItems from '../../layout/ListItems/index.jsx';
-import Productions from '../../components/Product/index.jsx';
+import SearchResults from '../../components/SearchResults/index.jsx';
 import ScrollToTop from '../../layout/AppBar/ScrollToTop.jsx';
 
-function Broad() {
+function SearchPage() {
   return (
     <Container
       disableGutters
       maxWidth={false}
       sx={{
         height: "100%",
-        mb: 9,
+        mb: {xs: 9, md: 0},
       }}
     >
       <AppBar />
@@ -29,11 +29,11 @@ function Broad() {
         }}
       >
         <ListItems />
-        <Productions />
+        <SearchResults />
       </Box>
       <ScrollToTop />
     </Container>
   );
 }
 
-export default Broad;
+export default SearchPage;

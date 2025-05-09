@@ -237,7 +237,7 @@ const Checkout = () => {
                 label="Số điện thoại"
                 type="tel"
                 name="phone"
-                value={user.role}
+                value={formData.phone}
                 onChange={handleInputChange}
                 error={!!errors.phone}
                 helperText={errors.phone}

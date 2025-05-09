@@ -88,7 +88,8 @@ function LoginModal({ open, onClose, onOpenSignUp, onLoginSuccess }) {
         sx: {
           borderRadius: "10px",
           boxShadow: 24,
-          p: 3,
+          px: {xs: 1, md: 3},
+          py: {xs: 2, md: 3},
         },
       }}
     >

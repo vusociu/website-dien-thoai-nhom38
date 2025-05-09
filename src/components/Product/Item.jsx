@@ -39,13 +39,13 @@ const sampleProducts = [
   }
 ];
 
-const Item = ({ productId = 1 }) => {
+const Item = ({ product }) => {
   const { isAuthenticated } = useAuth();
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
   // Lấy thông tin sản phẩm từ mock data
-  const product = sampleProducts.find(p => p.id === productId) || sampleProducts[0];
+  // const product = sampleProducts.find(p => p.id === productId) || sampleProducts[0];
 
   const handleAddToCart = () => {
     if (!isAuthenticated) {
@@ -53,9 +53,9 @@ const Item = ({ productId = 1 }) => {
     }
     addToCart({
       id: product.id,
-      name: product.name,
+      name: product.title,
       price: product.price,
-      image: product.image,
+      image: product.thumbnail,
       quantity: 1
     });
   };
@@ -83,8 +83,8 @@ const Item = ({ productId = 1 }) => {
     >
       <Box
         component="img"
-        src={product.image}
-        alt={product.name}
+        src={product.thumbnail}
+        alt={product.title}
         sx={{
           width: "100%",
           height: 200,
@@ -112,7 +112,7 @@ const Item = ({ productId = 1 }) => {
             height: "80px",
           }}
         >
-          {product.name}
+          {product.title}
         </Typography>
 
         <Stack spacing={1}>
