@@ -6,9 +6,34 @@ import {
   DialogTitle,
   Button,
   TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Box,
 } from "@mui/material";
 
 function EditProductDialog({ open, product, setProduct, onClose, onSave }) {
+  const categories = [
+    { name: "iPhone", id: 1 },
+    { name: "Samsung", id: 2 },
+    { name: "OPPO", id: 3 },
+    { name: "Xiaomi", id: 4 },
+    { name: "Nokia", id: 5 },
+    { name: "iPad", id: 6 },
+  ];
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProduct({ ...product, imagePreview: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Chỉnh sửa sản phẩm</DialogTitle>
@@ -20,6 +45,21 @@ function EditProductDialog({ open, product, setProduct, onClose, onSave }) {
           onChange={(e) => setProduct({ ...product, title: e.target.value })}
           sx={{ mb: 2 }}
         />
+        <FormControl fullWidth sx={{ mb: 2 }}>
+          <InputLabel>Loại sản phẩm</InputLabel>
+          <Select
+            value={product?.categoryId || ""}
+            onChange={(e) =>
+              setProduct({ ...product, categoryId: e.target.value })
+            }
+          >
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.id}>
+                {category.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <TextField
           label="Giá sản phẩm"
           type="number"
@@ -49,25 +89,25 @@ function EditProductDialog({ open, product, setProduct, onClose, onSave }) {
           }
           sx={{ mb: 2 }}
         />
-        <TextField
-          label="Số lượng sản phẩm"
-          type="number"
-          fullWidth
-          value={product?.quantity || ""}
-          onChange={(e) =>
-            setProduct({ ...product, quantity: Number(e.target.value) })
-          }
-          sx={{ mb: 2 }}
-        />
-        <TextField
-          label="Số lượng đã bán"
-          type="number"
-          fullWidth
-          value={product?.sold || ""}
-          onChange={(e) =>
-            setProduct({ ...product, sold: Number(e.target.value) })
-          }
-        />
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt: 2 }}>
+          <Button variant="contained" component="label">
+            Tải lên hình ảnh
+            <input
+              type="file"
+              hidden
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+          </Button>
+          {product?.imagePreview && (
+            <Box
+              component="img"
+              src={product.imagePreview}
+              alt="Hình ảnh sản phẩm"
+              sx={{ width: 100, height: 100, objectFit: "cover", borderRadius: 1 }}
+            />
+          )}
+        </Box>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Hủy</Button>

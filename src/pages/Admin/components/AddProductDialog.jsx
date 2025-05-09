@@ -7,6 +7,10 @@ import {
   Button,
   TextField,
   Box,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 
 function AddProductDialog({
@@ -17,6 +21,14 @@ function AddProductDialog({
   onSave,
   onFileChange,
 }) {
+  const categories = [
+    { name: "iPhone", id: 1 },
+    { name: "Samsung", id: 2 },
+    { name: "OPPO", id: 3 },
+    { name: "Xiaomi", id: 4 },
+    { name: "Nokia", id: 5 },
+    { name: "iPad", id: 6 },
+  ];
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Thêm sản phẩm</DialogTitle>
@@ -28,8 +40,23 @@ function AddProductDialog({
           onChange={(e) =>
             setNewProduct({ ...newProduct, title: e.target.value })
           }
-          sx={{ mb: 2 }}
+          sx={{ mb: 2, mt : 1 }}
         />
+        <FormControl fullWidth sx={{ mb: 2 }}>
+          <InputLabel >Loại sản phẩm</InputLabel>
+          <Select
+            value={newProduct.categoryId || ""}
+            onChange={(e) =>
+              setNewProduct({ ...newProduct, categoryId: e.target.value })
+            }
+          >
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.id}>
+                {category.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <TextField
           label="Giá sản phẩm"
           type="number"
@@ -59,7 +86,7 @@ function AddProductDialog({
           }
           sx={{ mb: 2 }}
         />
-        <TextField
+        {/* <TextField
           label="Số lượng sản phẩm"
           type="number"
           fullWidth
@@ -78,7 +105,7 @@ function AddProductDialog({
             setNewProduct({ ...newProduct, sold: e.target.value })
           }
           sx={{ mb: 2 }}
-        />
+        /> */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt: 2 }}>
           <Button variant="contained" component="label">
             Tải lên hình ảnh
