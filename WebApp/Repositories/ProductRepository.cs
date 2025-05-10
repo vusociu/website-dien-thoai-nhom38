@@ -4,6 +4,7 @@ using WebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebApp.helpers;
 
 namespace WebApp.Repositories
 {
@@ -66,7 +67,7 @@ namespace WebApp.Repositories
                 Title = productDTO.Title,
                 Price = productDTO.Price,
                 Rating = productDTO.Rating,
-                Thumbnail = productDTO.Thumbnail,
+                Thumbnail = Helper.uploadFile(productDTO.Thumbnail),
                 Description = productDTO.Description,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,

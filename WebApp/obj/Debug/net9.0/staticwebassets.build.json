@@ -1,12 +1,125 @@
 {
   "Version": 1,
-  "Hash": "Sh8z7p3uuchJt4MAf5WzGgXHQ23DMeU1JzJePUirkmA=",
+  "Hash": "7io+D4nQN4hi+2pTbCCE2qned43YDbB9RqBU5JJzubA=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "WebApp\\wwwroot",
+      "Source": "WebApp",
+      "ContentRoot": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8pzle52rys",
+      "Integrity": "BHbzhI+orTLGCQQ7cTi42LJ79DpvjL7TMy7SIKV/u34=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.8pzle52rys.jpg",
+      "AssetFile": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "131072"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BHbzhI+orTLGCQQ7cTi42LJ79DpvjL7TMy7SIKV/u34=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 10 May 2025 04:21:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8pzle52rys"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BHbzhI+orTLGCQQ7cTi42LJ79DpvjL7TMy7SIKV/u34="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "AssetFile": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "131072"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BHbzhI+orTLGCQQ7cTi42LJ79DpvjL7TMy7SIKV/u34=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 10 May 2025 04:21:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BHbzhI+orTLGCQQ7cTi42LJ79DpvjL7TMy7SIKV/u34="
+        }
+      ]
+    }
+  ]
 }

@@ -63,8 +63,7 @@ namespace WebApp.Controllers
             return Ok(new
             {
                 token = jwt,
-                fullName = user.Fullname,
-                role = user.RoleId
+                user,
             });
         }
     }
