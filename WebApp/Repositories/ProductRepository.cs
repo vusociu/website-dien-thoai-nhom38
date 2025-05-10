@@ -68,8 +68,8 @@ namespace WebApp.Repositories
                 Rating = productDTO.Rating,
                 Thumbnail = productDTO.Thumbnail,
                 Description = productDTO.Description,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow,
                 Deleted = SoftDelete.NO_DELETED
             };
 
@@ -112,7 +112,7 @@ namespace WebApp.Repositories
             existingProduct.Rating = productDTO.Rating;
             existingProduct.Thumbnail = productDTO.Thumbnail;
             existingProduct.Description = productDTO.Description;
-            existingProduct.UpdatedAt = DateTime.Now;
+            existingProduct.UpdatedAt = DateTime.UtcNow;
 
             _context.Products.Update(existingProduct);
             _context.SaveChanges();
