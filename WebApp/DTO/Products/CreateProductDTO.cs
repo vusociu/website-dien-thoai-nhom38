@@ -1,21 +1,15 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApp.DTO.Product
+namespace WebApp.DTO.Products
 {
-    public class PostProductDTO
+    public class CreateProductDTO
     {
         public int CategoryId { get; set; }
-
         [Required, MaxLength(250)]
         public string Title { get; set; }
-
         public int Price { get; set; }
-
-        [Range(0, 5)]
-        public float Rating { get; set; }
-
+        public int Discount { get; set; }
         public IFormFile Thumbnail { get; set; }
-
         public string Description { get; set; }
     }
 }

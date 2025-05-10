@@ -25,6 +25,7 @@ namespace WebApp.Models
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public int Discount { get; set; } = 0;
         public SoftDelete Deleted { get; set; } = SoftDelete.NO_DELETED;
     }
 }

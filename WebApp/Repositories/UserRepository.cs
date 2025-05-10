@@ -38,7 +38,11 @@ namespace WebApp.Repositories
 
         public User update(User updateUser)
         {
-            return _context.Users.Update(updateUser).Entity;
+            var existingUser = _context.Users.Find(updateUser.Id);
+            _context.Entry(existingUser).CurrentValues.SetValues(updateUser);
+            _context.SaveChangesAsync();
+
+            return existingUser;
         }
     }
 }
