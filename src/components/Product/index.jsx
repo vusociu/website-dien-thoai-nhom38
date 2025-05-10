@@ -22,7 +22,7 @@ function Productions() {
       }}>
         <Header/>
         <Body/>
-        <Footer/>
+        {/* <Footer/> is in the body*/}
       </Box>
   )
 }

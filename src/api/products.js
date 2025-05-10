@@ -23,9 +23,16 @@ export const fetchProducts = async () => {
   }
 };
 
-export const searchProducts = async ({ title = "", minPrice = 0, maxPrice = 0, categoryId = 0, sortOrder = "asc" }) => {
-  const url = `${API_URL}/sorted-products?title=${encodeURIComponent(title)}&minPrice=${minPrice}&maxPrice=${maxPrice}&categoryId=${categoryId}&sortOrder=${sortOrder}`;
+export const searchProducts = async ({ title = "", minPrice, maxPrice, categoryId, sortOrder = "asc" }) => {
+  const params = new URLSearchParams();
 
+  if (title) params.append("title", title);
+  if (minPrice !== undefined) params.append("minPrice", minPrice);
+  if (maxPrice !== undefined) params.append("maxPrice", maxPrice);
+  if (categoryId !== undefined) params.append("categoryId", categoryId);
+  if (sortOrder) params.append("sortOrder", sortOrder);
+
+  const url = `${API_URL}/sorted-products?${params.toString()}`;
   try {
     const response = await fetch(url, {
       headers: {

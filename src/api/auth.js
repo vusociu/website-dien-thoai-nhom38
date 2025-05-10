@@ -1,9 +1,10 @@
 const API_URL = "https://website-dien-thoai-nhom38-production.up.railway.app/api";
 
 export const register = async (userData) => {
-  const response = await fetch(`${API_URL}/auth/register`, {
-    method: "POST",
-    headers: {
+  try {
+    const response = await fetch(`${API_URL}/auth/register`, {
+      method: "POST",
+      headers: {
       "Content-Type": "application/json",
       Accept: "*/*",
     },
@@ -14,15 +15,20 @@ export const register = async (userData) => {
     const errorData = await response.json();
     throw new Error(errorData.message || "Đăng ký thất bại");
   }
-
-  return response.json();
+  const data = await response.json();
+  return data;
+  } catch (error) {
+    console.error("Lỗi register:", error);
+    throw error;
+  }
 };
 
 export const login = async (loginData) => {
-  const response = await fetch(`${API_URL}/auth/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+  try {
+    const response = await fetch(`${API_URL}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       Accept: "*/*",
     },
     body: JSON.stringify(loginData),
@@ -32,6 +38,10 @@ export const login = async (loginData) => {
     const errorData = await response.json();
     throw new Error(errorData.message || "Đăng nhập thất bại");
   }
-
-  return response.json();
+  const data = await response.json();
+  return data;
+  } catch (error) {
+    console.error("Lỗi login:", error);
+    throw error;
+  }
 };

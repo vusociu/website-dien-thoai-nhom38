@@ -14,7 +14,7 @@ function SearchPage() {
       maxWidth={false}
       sx={{
         height: "100%",
-        mb: {xs: 9, md: 0},
+        mb: 20,
       }}
     >
       <AppBar />

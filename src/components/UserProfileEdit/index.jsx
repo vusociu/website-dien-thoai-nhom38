@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
-  Container,
+  CircularProgress,
   Grid,
   Paper,
   Snackbar,
@@ -17,17 +17,21 @@ import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+
 import { useAuth } from '../../context/AuthContext';
+import { updateUser } from '../../api/user';
+import { setUserInfo, getUserInfo } from '../../utils/storage';
 
 const UserProfileEdit = () => {
-  const { user } = useAuth();
+  const { user, login } = useAuth();
   const [formData, setFormData] = useState({
     fullName: user?.fullName || "",
     phone: user?.phone || "",
     address: user?.address || ""
   });
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    console.log(user);
     if (user) {
       setFormData({
         fullName: user.fullName || "",
@@ -74,7 +78,7 @@ const UserProfileEdit = () => {
     setErrors({ ...errors, [name]: validateField(name, value) });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Validate all fields
     const newErrors = {};
@@ -87,18 +91,38 @@ const UserProfileEdit = () => {
       setErrors(newErrors);
       return;
     }
+    
+    setLoading(true);
+    
     try {
+      const res = await updateUser(user.id, formData);
+      
+      // Lấy thông tin user hiện tại từ localStorage
+      const currentUserInfo = getUserInfo();
+      
+      // Tạo object userData mới với thông tin đã cập nhật
+      const updatedUserInfo = {
+        ...currentUserInfo,
+        fullName: formData.fullName,
+        phone: formData.phone,
+        address: formData.address
+      };
+      setUserInfo(updatedUserInfo);
+      login(updatedUserInfo);
+      
       setSnackbar({
         open: true,
         message: "Cập nhật thông tin thành công!",
         severity: "success"
       });
-    } catch (error) {
+    } catch (err) {
       setSnackbar({
         open: true,
         message: "Đã có lỗi xảy ra. Vui lòng thử lại!",
         severity: "error"
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -191,17 +215,23 @@ const UserProfileEdit = () => {
 
             <Grid container spacing={2} sx={{ mt: 2 }}>
               <Grid size={{ xs: 12, md: 6 }}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  onClick={handleSubmit}
+                {loading ? (
+                  <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+                    <CircularProgress />
+                  </Box>
+                ) : (
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    onClick={handleSubmit}
                   startIcon={<SaveOutlinedIcon />}
                   disabled={Object.values(errors).some((error) => !!error)}
                 >
                   Lưu thay đổi
                 </Button>
+                )}
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
                 <Button

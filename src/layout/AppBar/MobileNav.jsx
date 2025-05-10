@@ -27,8 +27,8 @@ import LoginModal from '../../components/Authentication/LoginModal.jsx';
 import SignUpModal from '../../components/Authentication/SignUpModal.jsx';
 import { fetchCategories } from '../../api/categories';
 
-const MobileNav = () => {
-  const [value, setValue] = useState(0);
+const MobileNav = ({ tab }) => {
+  const [value, setValue] = useState(tab || 0);
   const [openLogin, setOpenLogin] = useState(false);
   const [openSignUp, setOpenSignUp] = useState(false);
   const [categoryDialogOpen, setCategoryDialogOpen] = useState(false);
@@ -43,12 +43,7 @@ const MobileNav = () => {
     const getCategories = async () => {
       try {
         const data = await fetchCategories();
-        // Add route property to each category
-        const categoriesWithRoutes = data.map(category => ({
-          ...category,
-          route: `/category/${category.name}`
-        }));
-        setCategories(categoriesWithRoutes);
+        setCategories(data);
         setError(null);
       } catch (err) {
         console.error("Lỗi lấy danh mục:", err);
@@ -79,7 +74,9 @@ const MobileNav = () => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    if (newValue === 1) {
+    if (newValue === 0) {
+      navigate('/');
+    } else if (newValue === 1) {
       setCategoryDialogOpen(true);
     } else if (newValue === 2 && isAuthenticated) {
       setProfileMenuAnchor(event.currentTarget);
@@ -88,21 +85,24 @@ const MobileNav = () => {
     }
   };
 
-  const handleCategorySelect = (route) => {
+  const handleCategorySelect = (category) => {
     setCategoryDialogOpen(false);
     setValue(0);
-    navigate(route);
-  };
-
-  const handleProfileMenuSelect = (route) => {
-    setProfileMenuAnchor(null);
-    setValue(0);
-    console.log(`Navigating to: ${route}`);
+    navigate(`/category?id=${category.id}&name=${encodeURIComponent(category.name)}`);
   };
 
   const handleProfileMenuClose = () => {
     setProfileMenuAnchor(null);
     setValue(0);
+  };
+
+  const handleDialogClose = () => {
+    setCategoryDialogOpen(false);
+    if (tab == 1) {
+      setValue(1);
+    } else {
+      setValue(0);
+    }
   };
 
   const handleLogout = () => {
@@ -164,10 +164,7 @@ const MobileNav = () => {
 
       <Dialog
         open={categoryDialogOpen}
-        onClose={() => {
-          setCategoryDialogOpen(false);
-          setValue(0);
-        }}
+        onClose={handleDialogClose}
         fullWidth
         maxWidth="sm"
         aria-labelledby="category-dialog-title"
@@ -181,7 +178,7 @@ const MobileNav = () => {
               {categories.map((category) => (
                 <ListItemButton
                   key={category.id}
-                  onClick={() => handleCategorySelect(category.route)}
+                  onClick={() => handleCategorySelect(category)}
                 >
                   <ListItemText primary={category.name} />
                 </ListItemButton>

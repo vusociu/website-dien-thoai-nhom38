@@ -7,11 +7,11 @@ import {
   Alert
 } from '@mui/material';
 import Item from '../Product/Item';
-import FilterHeader from '../Product/Header';
+import Header from '../Product/Header';
 import { searchProducts } from '../../api/products';
 import { useSearchParams } from 'react-router-dom';
 
-function SearchItems() {
+function CategoryItems() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,10 +23,14 @@ function SearchItems() {
   });
 
   useEffect(() => {
-    const fetchSearch = async () => {
+    const fetchCategory = async () => {
       try {
         setLoading(true);
-        const title = searchParams.get('title') || '';
+        const categoryId = searchParams.get('id') || '';
+        if (!categoryId) {
+          setProducts([]);
+          return;
+        }
         
         // Get filter parameters from URL if they exist
         const minPrice = searchParams.get('minPrice');
@@ -34,7 +38,7 @@ function SearchItems() {
         const sortOrder = searchParams.get('sortOrder') || 'asc';
         
         const results = await searchProducts({ 
-          title,
+          categoryId: parseInt(categoryId),
           minPrice: minPrice ? parseInt(minPrice) : undefined,
           maxPrice: maxPrice ? parseInt(maxPrice) : undefined,
           sortOrder
@@ -47,7 +51,7 @@ function SearchItems() {
         setLoading(false);
       }
     }
-    fetchSearch();
+    fetchCategory();
   }, [searchParams]);
 
   const handleFilterChange = async (filters) => {
@@ -68,7 +72,7 @@ function SearchItems() {
   } else if (products.length === 0) {
     content = (
       <Box sx={{ p: 2 }}>
-        <Typography>Không tìm thấy sản phẩm nào</Typography>
+        <Typography>Không có sản phẩm nào phù hợp</Typography>
       </Box>
     );
   } else {
@@ -87,10 +91,10 @@ function SearchItems() {
 
   return (
     <Box>
-      <FilterHeader onFilterChange={handleFilterChange} />
+      <Header onFilterChange={handleFilterChange} />
       {content}
     </Box>
   );
 }
   
-export default SearchItems;
+export default CategoryItems;

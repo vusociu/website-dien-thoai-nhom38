@@ -49,15 +49,18 @@ function LoginModal({ open, onClose, onOpenSignUp, onLoginSuccess }) {
 
     try {
       const res = await login({ email: username, password: password });
+      const userData = {
+        id: res.user.id,
+        fullName: res.user.fullname,  
+        email: res.user.email,
+        phone: res.user.phoneNumber,
+        address: res.user.address,
+        avatar: res.user.avatar,
+        roleId: res.user.roleId
+      };
       setToken(res.token);
-      setUserInfo({
-        fullName: res.fullName,
-        role: res.role,
-      });
-      onLoginSuccess({
-        fullName: res.fullName,
-        role: res.role
-      });
+      setUserInfo(userData);
+      onLoginSuccess(userData);
       onClose();
     } catch (err) {
       console.error("Login error:", err);
@@ -158,8 +161,7 @@ function LoginModal({ open, onClose, onOpenSignUp, onLoginSuccess }) {
             ),
           }}
         />
-
-        <Box
+        {/* <Box
           sx={{
             mt: 2,
             display: "flex",
@@ -170,12 +172,12 @@ function LoginModal({ open, onClose, onOpenSignUp, onLoginSuccess }) {
           <Link
             component="button"
             variant="body2"
-            onClick={() => console.log("Forgot password clicked")}
+            onClick={() => {}}
             sx={{ textDecoration: "none" }}
           >
             Quên mật khẩu?
           </Link>
-        </Box>
+        </Box> */}
       </DialogContent>
 
       <DialogActions sx={{ p: 3, pt: 2 }}>

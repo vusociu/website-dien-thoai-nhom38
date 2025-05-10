@@ -12,6 +12,8 @@ import {
   Link,
   InputAdornment,
   useMediaQuery,
+  Alert,
+  CircularProgress
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
@@ -22,17 +24,18 @@ import { register } from "../../api/auth";
 
 const SignUpModal = ({ open, onClose, onOpenLogin }) => {
   const [formData, setFormData] = useState({
-    fullName: "string",
-    email: "string@string.com",
-    phone: "0123456789",
-    address: "string",
-    password: "string",
-    confirmPassword: "string"
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+    password: "",
+    confirmPassword: ""
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
-  const [SignUpError, setSignUpError] = useState(false);
+  const [signUpError, setSignUpError] = useState("");
+  const [loading, setLoading] = useState(false);
 
 
   const theme = useTheme();
@@ -94,6 +97,9 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
       return;
     }
 
+    setLoading(true);
+    setSignUpError("");
+
     try {
       const userData = {
         fullName: formData.fullName,
@@ -108,7 +114,9 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
       onClose();
     } catch (err) {
       console.error("Đăng ký thất bại:", err);
-      setSignUpError(true);
+      setSignUpError(err.message || "Đăng ký thất bại. Vui lòng thử lại sau.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -162,6 +170,12 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
           justifyContent: "center",
         }}
       >
+        {signUpError && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {signUpError}
+          </Alert>
+        )}
+
         <TextField
           required
           margin="dense"
@@ -293,19 +307,25 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
       </DialogContent>
 
       <DialogActions sx={{ p: 3, pt: 2 }}>
-        <Button
-          fullWidth
-          variant="contained"
-          onClick={handleSignUp}
-          disabled={Object.values(errors).some(error => !!error)}
-          sx={{
-            py: 1.5,
-            textTransform: "none",
-            fontSize: "1rem",
-          }}
-        >
-          Đăng ký
-        </Button>
+        {loading ? (
+          <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={handleSignUp}
+            disabled={Object.values(errors).some(error => !!error)}
+            sx={{
+              py: 1.5,
+              textTransform: "none",
+              fontSize: "1rem",
+            }}
+          >
+            Đăng ký
+          </Button>
+        )}
       </DialogActions>
       <Box sx={{ mt: 1, textAlign: "center", width: "100%" }}>
         <Typography variant="body2" component={"span"} sx={{ mr: "5px" }}>

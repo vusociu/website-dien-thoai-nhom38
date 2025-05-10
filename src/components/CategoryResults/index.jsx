@@ -1,13 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import SearchItems from './SearchItems';
+import CategoryItems from './CategoryItems';
 import { useLocation } from 'react-router-dom';
 
-function SearchResults() {
+function CategoryResults() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const title = searchParams.get('title') || '';
+  const name = searchParams.get('name') || '';
+  const id = searchParams.get('id') || '';
 
   return (
       <Box sx={{
@@ -19,12 +20,12 @@ function SearchResults() {
         pr: '10px',
         pb: '10px',
       }}>
-        <Typography variant="body1" sx={{ m: 2 }}>Kết quả tìm kiếm cho từ khóa: <strong>{title}</strong></Typography>
-        {/* Header is in SearchItems */}
-        <SearchItems/>
+        <Typography variant="body1" sx={{ m: 2 }}>Danh mục: <strong>{name}</strong></Typography>
+        {/* Header is in CategoryItems */}
+        <CategoryItems/>
       </Box>
   )
 }
   
-  export default SearchResults;
+export default CategoryResults;
   

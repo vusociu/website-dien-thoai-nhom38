@@ -55,7 +55,8 @@ const CartItem = ({ item, onUpdateQuantity, onDelete }) => {
                 xs: "80px",
                 md: "100px",
               }, 
-              objectFit: "contain" }}
+              objectFit: "contain" 
+            }}
           />
         </Grid>
         <Grid size={{ xs: 8, md: 5 }}>

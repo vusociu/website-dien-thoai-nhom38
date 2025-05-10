@@ -22,7 +22,6 @@ const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity, selectItemsForCheckout } = useCart();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
-  const [deliveryTime, setDeliveryTime] = useState("");
   const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -45,14 +44,9 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
-    if (!deliveryTime || cartItems.length === 0) return;
-
-    const itemsWithDeliveryTime = cartItems.map(item => ({
-      ...item,
-      deliveryTime
-    }));
+    if (cartItems.length === 0) return;
     
-    selectItemsForCheckout(itemsWithDeliveryTime);
+    selectItemsForCheckout(cartItems);
     navigate('/checkout');
   };
 
@@ -100,18 +94,6 @@ const Cart = () => {
                 }}
               >
                 <Stack spacing={1.8}>
-                  <Typography variant="h6">Thời gian nhận hàng</Typography>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    type="date"
-                    value={deliveryTime}
-                    onChange={(e) => setDeliveryTime(e.target.value)}
-                    InputLabelProps={{ shrink: true }}
-                    inputProps={{
-                      min: new Date().toISOString().slice(0, 10),
-                    }}
-                  />
                   <Box
                     sx={{
                       display: { xs: "none", md: "block" },
@@ -135,7 +117,7 @@ const Cart = () => {
                       color="primary"
                       size="large"
                       fullWidth
-                      disabled={!deliveryTime || cartItems.length === 0}
+                      disabled={cartItems.length === 0}
                       onClick={handleCheckout}
                       sx={{ mt: 2 }}
                     >
@@ -174,7 +156,7 @@ const Cart = () => {
                   color="primary"
                   size="large"
                   fullWidth
-                  disabled={!deliveryTime || cartItems.length === 0}
+                  disabled={cartItems.length === 0}
                   onClick={handleCheckout}
                 >
                   Thanh toán

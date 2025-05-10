@@ -34,7 +34,8 @@ const Checkout = () => {
     phone: user?.phone || '',
     address: user?.address || '',
     note: '',
-    paymentMethod: 'cod'
+    paymentMethod: 'cod',
+    deliveryTime: ''
   });
 
   const [errors, setErrors] = useState({});
@@ -63,6 +64,9 @@ const Checkout = () => {
         break;
       case "address":
         if (!value) error = "Địa chỉ là bắt buộc";
+        break;
+      case "deliveryTime":
+        if (!value) error = "Vui lòng chọn ngày nhận hàng";
         break;
       default:
         break;
@@ -99,9 +103,9 @@ const Checkout = () => {
     try {
       // TODO: Gọi API đặt hàng tại đây
       const orderData = {
-        items: selectedItems.map(({ deliveryTime, ...item }) => ({
+        items: selectedItems.map(item => ({
           ...item,
-          expectedDeliveryDate: deliveryTime
+          expectedDeliveryDate: formData.deliveryTime
         })),
         customerInfo: formData,
         totalPrice
@@ -195,14 +199,6 @@ const Checkout = () => {
                             )}
                             ₫
                           </Typography>
-                          <Typography
-                            component="span"
-                            variant="body2"
-                            color="text.secondary"
-                            sx={{ display: "block" }}
-                          >
-                            Ngày giao hàng dự kiến: {new Date(item.deliveryTime).toLocaleDateString('vi-VN')}
-                          </Typography>
                         </React.Fragment>
                       }
                     />
@@ -295,6 +291,27 @@ const Checkout = () => {
             </RadioGroup>
           </Paper>
 
+          <Paper sx={{ p: 2, mb: 3 }}>
+            <Typography variant="h6" gutterBottom>
+              Thời gian nhận hàng
+            </Typography>
+            <TextField
+              required
+              fullWidth
+              size="small"
+              type="date"
+              name="deliveryTime"
+              value={formData.deliveryTime}
+              onChange={handleInputChange}
+              error={!!errors.deliveryTime}
+              InputLabelProps={{ shrink: true }}
+              inputProps={{
+                min: new Date().toISOString().slice(0, 10),
+              }}
+              sx={{ mt: 1 }}
+            />
+          </Paper>
+
           <Paper
             sx={{
               p: 2,
@@ -354,6 +371,7 @@ const Checkout = () => {
                     !formData.fullName ||
                     !formData.phone ||
                     !formData.address ||
+                    !formData.deliveryTime ||
                     Object.values(errors).some((error) => !!error)
                   }
                 >
@@ -394,6 +412,7 @@ const Checkout = () => {
                     !formData.fullName ||
                     !formData.phone ||
                     !formData.address ||
+                    !formData.deliveryTime ||
                     Object.values(errors).some((error) => !!error)
                   }
                 >

@@ -30,8 +30,8 @@ function ListItems() {
       getCategories();
     }, []);
 
-    const handleCategoryClick = (categoryName) => {
-      navigate(`/category/${categoryName}`);
+    const handleCategoryClick = (category) => {
+      navigate(`/category?id=${category.id}&name=${encodeURIComponent(category.name)}`);
     };
 
     return (
@@ -76,7 +76,7 @@ function ListItems() {
               <ListItemButton 
                 key={category.id} 
                 sx={{ borderRadius: "10px", p: "2px" }}
-                onClick={() => handleCategoryClick(category.name)}
+                onClick={() => handleCategoryClick(category)}
               >
                 <ListItemIcon>{/* Icon can be added here */}</ListItemIcon>
                 <ListItemText primary={category.name} />

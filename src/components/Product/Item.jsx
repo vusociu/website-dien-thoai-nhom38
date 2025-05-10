@@ -60,11 +60,12 @@ const Item = ({ product }) => {
     });
   };
 
+  const URL = "https://website-dien-thoai-nhom38-production.up.railway.app";
   return (
     <Paper
       variant="outlined"
       sx={{
-        height: 400,
+        height: "400px",
         border: "1px solid",
         borderColor: "divider",
         borderRadius: "8px",
@@ -82,15 +83,13 @@ const Item = ({ product }) => {
       }}
     >
       <Box
-        component="img"
-        src={product.thumbnail}
-        alt={product.title}
-        sx={{
-          width: "100%",
-          height: 200,
-          objectFit: "contain",
-        }}
-      />
+        component="div"
+        textAlign="center"
+        height="215px"
+      >
+        <img src={`${URL}${product.thumbnail}`} alt={product.title} style={{ marginTop: "10px", width: "160px", maxWidth: "100%", height: "auto", objectFit: "contain" }} />
+      </Box>
+      
       <Box
         sx={{
           display: "flex",
