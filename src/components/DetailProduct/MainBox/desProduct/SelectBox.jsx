@@ -13,8 +13,8 @@ function SelectBox() {
     const { id } = useParams();
     // const [selectedColor, setSelectedColor] = React.useState('Xanh Dương');
     // const [selectedCapacity, setSelectedCapacity] = React.useState('128GB');
-    const [price, setPrice] = React.useState(0);
-    const [namePhone, setNamePhone] = React.useState('Apple iPhone 15');
+    const [price, setPrice] = React.useState('');
+    const [namePhone, setNamePhone] = React.useState('Loading...');
 
     // const colors = [
     //     { name: 'Đen', image: 'https://via.placeholder.com/50/000000' },

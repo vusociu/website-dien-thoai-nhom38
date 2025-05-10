@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 
 let productApi = 'https://website-dien-thoai-nhom38-production.up.railway.app/api/Products';
+const BASE_URL = "https://website-dien-thoai-nhom38-production.up.railway.app";
 
 function Imgproduct() {
     const { id } = useParams();
@@ -26,8 +27,8 @@ function Imgproduct() {
                 }
     
                 const data = await response.json();
-                if (data && data.images) {
-                    setSelectedImage(data.images); // Cập nhật hình ảnh đầu tiên
+                if (data && data.thumbnail) {
+                    setSelectedImage(`${BASE_URL}${data.thumbnail}`); // Cập nhật hình ảnh đầu tiên
                 } else {
                     console.error('No images found in product data');
                 }
@@ -43,6 +44,7 @@ function Imgproduct() {
         <Box sx={{
             position: 'sticky',
             padding: 2,
+            mb: 4,
             maxWidth: '400px',
             minWidth: '400px',
             // height: '500px',

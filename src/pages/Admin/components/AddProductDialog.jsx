@@ -12,6 +12,7 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 function AddProductDialog({
   open,
@@ -29,6 +30,7 @@ function AddProductDialog({
     { name: "Nokia", id: 5 },
     { name: "iPad", id: 6 },
   ];
+  const BASE_URL = "https://website-dien-thoai-nhom38-production.up.railway.app";
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Thêm sản phẩm</DialogTitle>
@@ -76,7 +78,7 @@ function AddProductDialog({
           }
           sx={{ mb: 2 }}
         />
-        <TextField
+        {/* <TextField
           label="Giảm giá (%)"
           type="number"
           fullWidth
@@ -85,7 +87,7 @@ function AddProductDialog({
             setNewProduct({ ...newProduct, discount: e.target.value })
           }
           sx={{ mb: 2 }}
-        />
+        /> */}
         {/* <TextField
           label="Số lượng sản phẩm"
           type="number"
@@ -107,22 +109,31 @@ function AddProductDialog({
           sx={{ mb: 2 }}
         /> */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt: 2 }}>
-          <Button variant="contained" component="label">
+          <Button variant="contained" component="label"  startIcon={<CloudUploadIcon />}>
             Tải lên hình ảnh
             <input
               type="file"
               hidden
               accept="image/*"
-              onChange={onFileChange}
+              onChange={(e) => onFileChange(e, setNewProduct)}
             />
           </Button>
-          {newProduct.imagePreview && (
+          {newProduct.imagePreview ? (
             <Box
               component="img"
-              src={newProduct.imagePreview}
+              src={newProduct.imagePreview} // Hiển thị bản xem trước nếu có
               alt="Hình ảnh sản phẩm"
               sx={{ width: 100, height: 100, objectFit: "cover", borderRadius: 1 }}
             />
+          ) : newProduct.thumbnail ? (
+            <Box
+              component="img"
+              src={`${BASE_URL}${newProduct.thumbnail}`} // Ghép URL gốc với thumbnail
+              alt="Hình ảnh sản phẩm"
+              sx={{ width: 100, height: 100, objectFit: "cover", borderRadius: 1 }}
+            />
+          ) : (
+            "Không có hình ảnh"
           )}
         </Box>
       </DialogContent>

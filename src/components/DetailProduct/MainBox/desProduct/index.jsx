@@ -25,8 +25,8 @@ function Desproduct() {
                 }
 
                 const data = await response.json();
-                if (data && data.describle) {
-                    setDescrible(data.describle); // Cập nhật mô tả sản phẩm
+                if (data && data.description) {
+                    setDescrible(data.description); // Cập nhật mô tả sản phẩm
                 } else {
                     console.error('No describle found in product data');
                 }
@@ -66,8 +66,8 @@ function Desproduct() {
             {/* Mô tả sản phẩm */}
             <Box
                 sx={{
-                    height: '800px',
-                    //height: 'fit-content',
+                    // height: '800px',
+                    height: 'fit-content',
                     backgroundColor: 'white',
                     borderRadius: '8px',
                     padding: 2,
