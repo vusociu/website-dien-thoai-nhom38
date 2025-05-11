@@ -1,11 +1,18 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { LOGOUT_EVENT } from './AuthContext';
+import { getCartItems, setCartItems, removeCartItems } from '../utils/storage';
 
 const CartContext = createContext(null);
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItemsState] = useState(() => {
+    return getCartItems();
+  });
   const [selectedItems, setSelectedItems] = useState([]);
+
+  useEffect(() => {
+    setCartItems(cartItems);
+  }, [cartItems]);
 
   useEffect(() => {
     const handleLogout = () => {
@@ -18,7 +25,7 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const addToCart = (newItem) => {
-    setCartItems(prev => {
+    setCartItemsState(prev => {
       const existingItem = prev.find(item => item.id === newItem.id);
       if (existingItem) {
         return prev.map(item =>
@@ -32,12 +39,12 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (itemId) => {
-    setCartItems(prev => prev.filter(item => item.id !== itemId));
+    setCartItemsState(prev => prev.filter(item => item.id !== itemId));
   };
 
   const updateQuantity = (itemId, quantity) => {
     if (quantity < 1) return;
-    setCartItems(prev =>
+    setCartItemsState(prev =>
       prev.map(item =>
         item.id === itemId ? { ...item, quantity } : item
       )
@@ -53,8 +60,9 @@ export const CartProvider = ({ children }) => {
   };
 
   const clearCart = () => {
-    setCartItems([]);
+    setCartItemsState([]);
     setSelectedItems([]);
+    removeCartItems();
   };
 
   return (

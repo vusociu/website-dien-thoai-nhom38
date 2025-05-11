@@ -6,6 +6,7 @@ import CategoryPage from './pages/CategoryPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import UserProfileEditPage from './pages/UserProfileEditPage';
+import Success from './pages/Success';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/checkout/success" element={<Success />} />
         <Route path="/edit-profile" element={<UserProfileEditPage />} />
       </Routes>
     </BrowserRouter>

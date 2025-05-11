@@ -19,9 +19,10 @@ import CartItem from "./CartItem";
 import { useCart } from "../../context/CartContext";
 
 const Cart = () => {
-  const { cartItems, removeFromCart, updateQuantity, selectItemsForCheckout } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, selectItemsForCheckout, clearCart } = useCart();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
+  const [clearAllDialogOpen, setClearAllDialogOpen] = useState(false);
   const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -43,9 +44,18 @@ const Cart = () => {
     }
   };
 
+  const handleClearAllClick = () => {
+    setClearAllDialogOpen(true);
+  };
+
+  const handleConfirmClearAll = () => {
+    clearCart();
+    setClearAllDialogOpen(false);
+  };
+
   const handleCheckout = () => {
     if (cartItems.length === 0) return;
-    
+
     selectItemsForCheckout(cartItems);
     navigate('/checkout');
   };
@@ -70,7 +80,7 @@ const Cart = () => {
               Quay lại trang mua hàng
             </MuiLink>
           </Alert>
-          
+
         ) : (
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, md: 9 }}>
@@ -82,12 +92,27 @@ const Cart = () => {
                   onDelete={handleDeleteClick}
                 />
               ))}
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="small"
+                  onClick={handleClearAllClick}
+                  sx={{
+                    textTransform: "none",
+                  }}
+                >
+                  Xóa tất cả
+                </Button>
+              </Box>
             </Grid>
+
             <Grid size={{ xs: 12, md: 3 }}>
               <Paper
                 elevation={1}
                 sx={{
                   p: { xs: 2, md: 3 },
+                  display: { xs: "none", md: "block" },
                   position: { md: "sticky" },
                   top: { md: 24 },
                   mb: { xs: 15, md: 0 },
@@ -95,35 +120,39 @@ const Cart = () => {
               >
                 <Stack spacing={1.8}>
                   <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <Typography variant="subtitle2" sx={{ fontSize: "18px" }}>
+                      Tổng cộng:
+                    </Typography>
+                    <Typography variant="h6" color="primary">
+                      {totalPrice.toLocaleString("vi-VN")}₫
+                    </Typography>
+                  </Box>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    disabled={cartItems.length === 0}
+                    onClick={handleCheckout}
+                    sx={{ mt: 2 }}
+                  >
+                    Thanh toán
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    size="small"
+                    fullWidth
+                    onClick={() => navigate(-1)}
                     sx={{
-                      display: { xs: "none", md: "block" },
+                      textTransform: "none",
                     }}
                   >
-                    <Box
-                      display="flex"
-                      justifyContent="space-between"
-                      alignItems="center"
-                    >
-                      <Typography variant="subtitle2" sx={{ fontSize: "18px" }}>
-                        Tổng cộng:
-                      </Typography>
-                      <Typography variant="h6" color="primary">
-                        {totalPrice.toLocaleString("vi-VN")}₫
-                      </Typography>
-                    </Box>
-
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      fullWidth
-                      disabled={cartItems.length === 0}
-                      onClick={handleCheckout}
-                      sx={{ mt: 2 }}
-                    >
-                      Thanh toán
-                    </Button>
-                  </Box>
+                    Tiếp tục mua hàng
+                  </Button>
                 </Stack>
               </Paper>
               <Paper
@@ -154,12 +183,24 @@ const Cart = () => {
                 <Button
                   variant="contained"
                   color="primary"
-                  size="large"
                   fullWidth
                   disabled={cartItems.length === 0}
                   onClick={handleCheckout}
                 >
                   Thanh toán
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  size="small"
+                  fullWidth
+                  onClick={() => navigate(-1)}
+                  sx={{
+                    textTransform: "none",
+                    mt: 1
+                  }}
+                >
+                  Tiếp tục mua hàng
                 </Button>
               </Paper>
             </Grid>
@@ -182,6 +223,26 @@ const Cart = () => {
         <DialogActions>
           <Button onClick={() => setDeleteDialogOpen(false)}>Hủy</Button>
           <Button onClick={handleConfirmDelete} color="error" autoFocus>
+            Xóa
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={clearAllDialogOpen}
+        onClose={() => setClearAllDialogOpen(false)}
+        aria-labelledby="clear-all-dialog-title"
+        sx={{ "& .MuiDialog-paper": { borderRadius: "10px" } }}
+      >
+        <DialogTitle id="clear-all-dialog-title">Xóa tất cả sản phẩm</DialogTitle>
+        <DialogContent>
+          <Typography>
+            Bạn có chắc chắn muốn xóa tất cả sản phẩm khỏi giỏ hàng?
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setClearAllDialogOpen(false)}>Hủy</Button>
+          <Button onClick={handleConfirmClearAll} color="error" autoFocus>
             Xóa
           </Button>
         </DialogActions>

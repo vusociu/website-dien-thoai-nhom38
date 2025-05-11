@@ -18,20 +18,23 @@ import {
   ListItemAvatar,
   Avatar,
   Link as MuiLink,
-  Alert
+  Alert,
+  CircularProgress,
+  Snackbar
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
+import { checkout } from '../../api/checkout';
 
 const Checkout = () => {
   const { user } = useAuth();
-  const { selectedItems, clearSelectedItems } = useCart();
+  const { selectedItems, clearSelectedItems, clearCart } = useCart();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     fullName: user?.fullName || '',
-    phone: user?.phone || '',
+    phoneNumber: user?.phone || '',
     address: user?.address || '',
     note: '',
     paymentMethod: 'cod',
@@ -39,6 +42,11 @@ const Checkout = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+  });
 
   // Kiểm tra selectedItems khi component mount
 
@@ -57,7 +65,7 @@ const Checkout = () => {
         if (!value) error = "Họ và tên là bắt buộc";
         else if (value.length < 2) error = "Họ và tên phải có ít nhất 2 ký tự";
         break;
-      case "phone":
+      case "phoneNumber":
         const phoneRegex = /^\d{10}$/;
         if (!value) error = "So điện thoại là bắt buộc";
         else if (!phoneRegex.test(value)) error = "Số điện thoại không hợp lệ (Gồm 10 chữ số từ 0-9)";
@@ -85,6 +93,13 @@ const Checkout = () => {
     setErrors({ ...errors, [name]: validateField(name, value) });
   };
 
+  const handleCloseSnackbar = () => {
+    setSnackbar({
+      ...snackbar,
+      open: false
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -99,24 +114,35 @@ const Checkout = () => {
       setErrors(newErrors);
       return;
     }
-
+    setLoading(true);
     try {
-      // TODO: Gọi API đặt hàng tại đây
       const orderData = {
-        items: selectedItems.map(item => ({
-          ...item,
-          expectedDeliveryDate: formData.deliveryTime
-        })),
-        customerInfo: formData,
-        totalPrice
+        userId: user.id,
+        fullname: formData.fullName,
+        email: user.email,
+        phoneNumber: formData.phoneNumber,
+        address: formData.address,
+        note: formData.note,
+        cartItems: selectedItems.map(item => ({
+          productId: item.id,
+          price: item.price,
+          quantity: item.quantity
+        }))
       };
-      console.log('Đặt hàng thành công:', orderData);
+      const res = await checkout(orderData);
+      clearCart();
+      console.log('Đặt hàng thành công:', res);
 
       // Reset giỏ hàng và chuyển đến trang thông báo thành công
-      clearSelectedItems();
       navigate('/checkout/success');
-    } catch (error) {
-      console.error('Lỗi khi đặt hàng:', error);
+    } catch (err) {
+      console.error('Lỗi khi đặt hàng:', err);
+      setSnackbar({
+        open: true,
+        message: 'Đặt hàng thất bại. Vui lòng thử lại sau.',
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -232,13 +258,13 @@ const Checkout = () => {
                 size="small"
                 label="Số điện thoại"
                 type="tel"
-                name="phone"
-                value={formData.phone}
+                name="phoneNumber"
+                value={formData.phoneNumber}
                 onChange={handleInputChange}
-                error={!!errors.phone}
-                helperText={errors.phone}
+                error={!!errors.phoneNumber}
+                helperText={errors.phoneNumber}
               />
-                            <Grid container spacing={2}>
+              <Grid container spacing={2}>
                 <Grid size={{ xs: 12, md: 6 }}>
                   <TextField
                     required
@@ -304,6 +330,7 @@ const Checkout = () => {
               value={formData.deliveryTime}
               onChange={handleInputChange}
               error={!!errors.deliveryTime}
+              helperText={errors.deliveryTime}
               InputLabelProps={{ shrink: true }}
               inputProps={{
                 min: new Date().toISOString().slice(0, 10),
@@ -361,22 +388,28 @@ const Checkout = () => {
                 >
                   Quay lại giỏ hàng
                 </MuiLink>
-                <Button
-                  variant="contained"
-                  size="large"
-                  fullWidth
-                  onClick={handleSubmit}
-                  mt={2}
-                  disabled={
-                    !formData.fullName ||
-                    !formData.phone ||
-                    !formData.address ||
-                    !formData.deliveryTime ||
-                    Object.values(errors).some((error) => !!error)
-                  }
-                >
-                  Đặt hàng
-                </Button>
+                {loading ? (
+                  <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+                    <CircularProgress />
+                  </Box>
+                ) : (
+                  <Button
+                    variant="contained"
+                    size="large"
+                    fullWidth
+                    onClick={handleSubmit}
+                    mt={2}
+                    disabled={
+                      !formData.fullName ||
+                      !formData.phoneNumber ||
+                      !formData.address ||
+                      !formData.deliveryTime ||
+                      Object.values(errors).some((error) => !!error)
+                    }
+                  >
+                    Đặt hàng
+                  </Button>
+                )}
               </Box>
 
               {/* Mobile version */}
@@ -403,26 +436,40 @@ const Checkout = () => {
                     {totalPrice.toLocaleString("vi-VN")}₫
                   </Typography>
                 </Box>
-                <Button
-                  variant="contained"
-                  size="large"
-                  fullWidth
-                  onClick={handleSubmit}
-                  disabled={
-                    !formData.fullName ||
-                    !formData.phone ||
-                    !formData.address ||
-                    !formData.deliveryTime ||
-                    Object.values(errors).some((error) => !!error)
-                  }
-                >
-                  Đặt hàng
-                </Button>
+                {loading ? (
+                  <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+                    <CircularProgress />
+                  </Box>
+                ) : (
+                  <Button
+                    variant="contained"
+                    size="large"
+                    fullWidth
+                    onClick={handleSubmit}
+                    disabled={
+                      !formData.fullName ||
+                      !formData.phoneNumber ||
+                      !formData.address ||
+                      !formData.deliveryTime ||
+                      Object.values(errors).some((error) => !!error)
+                    }
+                  >
+                    Đặt hàng
+                  </Button>
+                )}
               </Paper>
             </Stack>
           </Paper>
         </Grid>
       </Grid>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        message={snackbar.message}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      />
     </Box>
   );
 };
