@@ -92,18 +92,29 @@ const handleAddProduct = async () => {
 
 const handleEditProduct = async () => {
   try {
-    const formData = new FormData();
-    formData.append("categoryId", editingProduct.categoryId);
-    formData.append("title", editingProduct.title);
-    formData.append("price", editingProduct.price);
-    formData.append("description", editingProduct.description);
-    if (editingProduct.image) {
-      formData.append("thumbnail", editingProduct.image); // Gửi file thực tế
+    // Kiểm tra dữ liệu trước khi gửi
+    if (!editingProduct.title || !editingProduct.categoryId || !editingProduct.price) {
+      console.error("Vui lòng nhập đầy đủ thông tin sản phẩm.");
+      return;
     }
 
+    // Chuẩn bị dữ liệu JSON
+    const updatedProductData = {
+      categoryId: editingProduct.categoryId,
+      title: editingProduct.title,
+      price: editingProduct.price,
+      rating: editingProduct.rating || 0, // Nếu không có rating, mặc định là 0
+      thumbnail: editingProduct.imagePreview || editingProduct.thumbnail || "", // Sử dụng hình ảnh mới hoặc giữ nguyên hình ảnh cũ
+      description: editingProduct.description,
+    };
+
+    // Gửi yêu cầu PUT
     const response = await fetch(`${productApi}/${editingProduct.id}`, {
       method: "PUT",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedProductData), // Gửi dữ liệu dưới dạng JSON
     });
 
     if (!response.ok) {
@@ -111,11 +122,15 @@ const handleEditProduct = async () => {
     }
 
     const updatedProduct = await response.json();
-    setProducts(
-      products.map((product) =>
+    console.log("Updated Product:", updatedProduct); // Log sản phẩm đã cập nhật
+
+   // Cập nhật danh sách sản phẩm
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
         product.id === updatedProduct.id ? updatedProduct : product
       )
     );
+    //  setProducts([...products, createdProduct]);
     setOpenEditDialog(false); // Đóng dialog
   } catch (error) {
     console.error("Error updating product:", error);
@@ -135,7 +150,9 @@ const handleEditProduct = async () => {
         throw new Error("Failed to delete product");
       }
 
-      setProducts(products.filter((product) => product.id !== id)); // Cập nhật danh sách sản phẩm
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== id)
+    );
     } catch (error) {
       console.error("Error deleting product:", error);
     }

@@ -45,7 +45,7 @@ function AddProductDialog({
           sx={{ mb: 2, mt : 1 }}
         />
         <FormControl fullWidth sx={{ mb: 2 }}>
-          <InputLabel >Loại sản phẩm</InputLabel>
+          <InputLabel sx={{ backgroundColor: "white", px: 1 }} >Loại sản phẩm</InputLabel>
           <Select
             value={newProduct.categoryId || ""}
             onChange={(e) =>
