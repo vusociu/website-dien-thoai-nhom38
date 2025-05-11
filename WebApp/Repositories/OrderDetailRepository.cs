@@ -1,12 +1,14 @@
-﻿using WebApp.Data;
+using WebApp.Data;
 using WebApp.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebApp.Repositories
 {
     public class OrderDetailRepository : IOrderDetailRepository
     {
+        private readonly ApplicationDbContext _context;
 
-        private ApplicationDbContext _context;
         public OrderDetailRepository(ApplicationDbContext context)
         {
             _context = context;
