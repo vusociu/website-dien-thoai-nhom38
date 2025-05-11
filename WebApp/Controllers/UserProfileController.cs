@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using WebApp.DTO.User;
 using WebApp.helpers;
-using WebApp.Models;
+using WebApp.Middlewares;
 using WebApp.Repositories;
 
 namespace WebApp.Controllers
@@ -17,12 +16,14 @@ namespace WebApp.Controllers
         }
 
 
-        [HttpGet("")]
+        [TypeFilter(typeof(AuthMiddleware))]
+        [HttpGet]
         public IActionResult updateProfile()
         {
             return Ok(_userRepository.byId((int)HttpContext.Items["User"]));
         }
 
+        [TypeFilter(typeof(AuthMiddleware))]
         [HttpPatch("update")]
         public IActionResult updateProfile(UpdateUserProfileDTO dto)
         {

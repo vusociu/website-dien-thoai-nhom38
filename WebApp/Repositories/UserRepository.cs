@@ -28,7 +28,7 @@ namespace WebApp.Repositories
 
         public List<User> findAll()
         {
-            return _context.Users.Where(u => u.RoleId!=0).ToList();
+            return _context.Users.Where(u => u.RoleId== WebApp.Data.Role.USER).OrderBy(u=>u.CreatedAt).ToList();
         }
 
         public User byId(int id)

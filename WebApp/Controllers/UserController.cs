@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApp.Data;
 using WebApp.DTO.User;
+using WebApp.Middlewares;
 using WebApp.Models;
 using WebApp.Repositories;
 using WebApp.Transform;
@@ -7,6 +9,7 @@ using WebApp.Transform;
 namespace WebApp.Controllers
 {
     [ApiController]
+    [TypeFilter(typeof(AuthMiddleware))]
     [Route("api/user")]
     public class UserController : Controller
     {
@@ -25,17 +28,19 @@ namespace WebApp.Controllers
             _orderDetailRepository = orderDetailRepository;
             _productRepository = productRepository;
         }
+        [TypeFilter(typeof(AdminMiddleware))]
         [HttpGet("index")]
         public async Task<IActionResult> listUser()
         {
             return Ok(_userRepository.findAll());
         }
 
+        [TypeFilter(typeof(AdminMiddleware))]
         [HttpPatch("{id}/update")]
         public async Task<IActionResult> updateUser([FromRoute] int id, [FromBody] UpdateUserDTO dto)
         {
             var user = _userRepository.byId(id);
-            if (user == null)
+            if (user == null || user.RoleId==Data.Role.ADMIN)
             {
                 return BadRequest("No data");
             }
@@ -46,11 +51,12 @@ namespace WebApp.Controllers
             return Ok(_userRepository.update(user));
         }
 
+        [TypeFilter(typeof(AdminMiddleware))]
         [HttpGet("{id}/detail")]
         public async Task<IActionResult> detailUser([FromRoute] int id)
         {
             User user = _userRepository.byId(id);
-            if (user == null)
+            if (user == null || user.RoleId == Data.Role.ADMIN)
             {
                 return BadRequest("No data");
             }
@@ -88,7 +94,7 @@ namespace WebApp.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}/card")]
+        [HttpGet("{id}/cart")]
         public async Task<IActionResult> listOrderInCard([FromRoute] int id)
         {
             List<Order> orders = _orderRepository.byUserId(id);

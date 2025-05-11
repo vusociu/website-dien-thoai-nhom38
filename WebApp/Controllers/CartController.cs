@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using WebApp.DTO.Cart;
+using WebApp.Middlewares;
 using WebApp.Repositories;
 
 namespace WebApp.Controllers
 {
     [Route("api/[controller]")]
+    [TypeFilter(typeof(AuthMiddleware))]
     [ApiController]
     public class CartController : ControllerBase
     {

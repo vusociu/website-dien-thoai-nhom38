@@ -54,7 +54,7 @@ namespace WebApp.Controllers
             {
                 return BadRequest(new { message = "Invalid credentials" });
             }
-            var jwt = _jwtService.generate(user.Id);
+            var jwt = _jwtService.generate(user.Id, user.RoleId);
 
             Response.Cookies.Append("bearer_token", jwt, new CookieOptions
             {
