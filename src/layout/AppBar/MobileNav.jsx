@@ -87,7 +87,7 @@ const MobileNav = ({ tab }) => {
 
   const handleCategorySelect = (category) => {
     setCategoryDialogOpen(false);
-    setValue(0);
+    setValue(1);
     navigate(`/category?id=${category.id}&name=${encodeURIComponent(category.name)}`);
   };
 

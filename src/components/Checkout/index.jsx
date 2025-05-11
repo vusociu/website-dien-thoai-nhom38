@@ -48,16 +48,6 @@ const Checkout = () => {
     message: '',
   });
 
-  // Kiểm tra selectedItems khi component mount
-
-
-  // Cleanup khi unmount
-  // useEffect(() => {
-  //   return () => {
-  //     clearSelectedItems();
-  //   };
-  // }, [clearSelectedItems]);
-
   const validateField = (name, value) => {
     let error = "";
     switch (name) {
@@ -132,8 +122,6 @@ const Checkout = () => {
       const res = await checkout(orderData);
       clearCart();
       console.log('Đặt hàng thành công:', res);
-
-      // Reset giỏ hàng và chuyển đến trang thông báo thành công
       navigate('/checkout/success');
     } catch (err) {
       console.error('Lỗi khi đặt hàng:', err);
@@ -465,10 +453,11 @@ const Checkout = () => {
 
       <Snackbar
         open={snackbar.open}
-        autoHideDuration={6000}
+        autoHideDuration={3000}
+        severity='error'
         onClose={handleCloseSnackbar}
         message={snackbar.message}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
       />
     </Box>
   );

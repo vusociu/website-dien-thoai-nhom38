@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Typography,
   Box,
@@ -7,39 +7,41 @@ import {
   Button,
   Stack,
   IconButton,
-  Tooltip
+  Tooltip,
+  CircularProgress,
+  Skeleton
 } from "@mui/material";
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-// Mock data cho testing
-const sampleProducts = [
-  {
-    id: 1,
-    name: "iPhone 15 Pro Max 256GB",
-    price: 31990000,
-    image: "https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-titan-1.jpg",
-    rating: 4.8
-  },
-  {
-    id: 2,
-    name: "Samsung Galaxy S24 Ultra 256GB",
-    price: 29990000,
-    image: "https://cdn.tgdd.vn/Products/Images/42/317748/samsung-galaxy-s24-ultra-xam-1.jpg",
-    rating: 4.7
-  },
-  {
-    id: 3,
-    name: "OPPO Find N3 5G",
-    price: 44990000,
-    image: "https://cdn.tgdd.vn/Products/Images/42/315659/oppo-find-n3-vang-1.jpg",
-    rating: 4.5
-  }
-];
+// const sampleProducts = [
+//   {
+//     id: 1,
+//     name: "iPhone 15 Pro Max 256GB",
+//     price: 31990000,
+//     image: "https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-titan-1.jpg",
+//     rating: 4.8
+//   },
+//   {
+//     id: 2,
+//     name: "Samsung Galaxy S24 Ultra 256GB",
+//     price: 29990000,
+//     image: "https://cdn.tgdd.vn/Products/Images/42/317748/samsung-galaxy-s24-ultra-xam-1.jpg",
+//     rating: 4.7
+//   },
+//   {
+//     id: 3,
+//     name: "OPPO Find N3 5G",
+//     price: 44990000,
+//     image: "https://cdn.tgdd.vn/Products/Images/42/315659/oppo-find-n3-vang-1.jpg",
+//     rating: 4.5
+//   }
+// ];
 
 const Item = ({ product }) => {
+  const [loading, setLoading] = useState(false);
   const { isAuthenticated } = useAuth();
   const { addToCart } = useCart();
   const navigate = useNavigate();
@@ -47,7 +49,8 @@ const Item = ({ product }) => {
   // Lấy thông tin sản phẩm từ mock data
   // const product = sampleProducts.find(p => p.id === productId) || sampleProducts[0];
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+    e.stopPropagation(); 
     if (!isAuthenticated) {
       return;
     }
@@ -60,10 +63,15 @@ const Item = ({ product }) => {
     });
   };
 
+  const handleProductClick = () => {
+    navigate(`/detail?id=${product.id}&name=${encodeURIComponent(product.title)}`);
+  };
+
   const URL = "https://website-dien-thoai-nhom38-production.up.railway.app";
   return (
     <Paper
       variant="outlined"
+      onClick={handleProductClick}
       sx={{
         height: "400px",
         border: "1px solid",
@@ -87,9 +95,14 @@ const Item = ({ product }) => {
         textAlign="center"
         height="215px"
       >
-        <img src={`${URL}${product.thumbnail}`} alt={product.title} style={{ marginTop: "10px", width: "160px", maxWidth: "100%", height: "auto", objectFit: "contain" }} />
+        <img
+          src={`${URL}${product.thumbnail}`}
+          alt={product.title}
+          onLoad={() => setLoading(false)}
+          style={{ marginTop: "10px", width: "160px", maxWidth: "100%", height: "auto", objectFit: "contain" }}
+        />
       </Box>
-      
+
       <Box
         sx={{
           display: "flex",
@@ -115,20 +128,20 @@ const Item = ({ product }) => {
         </Typography>
 
         <Stack spacing={1}>
-          <Box 
-            sx={{ 
-              display: "flex", 
+          <Box
+            sx={{
+              display: "flex",
               justifyContent: "center",
-              
+
             }}
           >
             <Tooltip title="Thêm vào giỏ hàng" placement="right">
-              <IconButton 
-               onClick={handleAddToCart}
-               sx={{
-                border: "0.5px solid",
-                borderColor: "divider", 
-               }}
+              <IconButton
+                onClick={handleAddToCart}
+                sx={{
+                  border: "0.5px solid",
+                  borderColor: "divider",
+                }}
               >
                 <AddShoppingCartOutlinedIcon sx={{ color: "secondary.main" }} />
               </IconButton>

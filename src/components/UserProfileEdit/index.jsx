@@ -31,7 +31,6 @@ const UserProfileEdit = () => {
   });
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    console.log(user);
     if (user) {
       setFormData({
         fullName: user.fullName || "",

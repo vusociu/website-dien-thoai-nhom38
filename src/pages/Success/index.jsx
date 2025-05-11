@@ -42,10 +42,6 @@ const Success = () => {
                     Cảm ơn bạn đã đặt hàng. Chúng tôi đã nhận được đơn hàng và sẽ xử lý trong thời gian sớm nhất.
                 </Typography>
                 
-                <Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>
-                    Bạn có thể xem đơn hàng trong mục "Đơn hàng của tôi"
-                </Typography>
-                
                 <Stack 
                     direction={{ xs: "column", sm: "row" }} 
                     spacing={2}
@@ -61,7 +57,7 @@ const Success = () => {
                         Tiếp tục mua sắm
                     </Button>
                     
-                    <Button 
+                    {/* <Button 
                         variant="outlined" 
                         color="primary"
                         startIcon={<ReceiptIcon />}
@@ -70,7 +66,7 @@ const Success = () => {
                         sx={{bgcolor: "#fff"}}
                     >
                         Xem đơn hàng
-                    </Button>
+                    </Button> */}
                 </Stack>
             </Paper>
         </Container>
