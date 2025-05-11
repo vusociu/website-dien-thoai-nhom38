@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using WebApp.Repositories;
 using WebApp.DTO.Product;
+using WebApp.Middlewares;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApp.Controllers
 {
@@ -26,7 +28,7 @@ namespace WebApp.Controllers
             return _productRepository.GetAll();
         }
 
-        // GET: api/products/5
+        // GET: api/products/
         [HttpGet("{id}")]
         public ActionResult<GetProductByIdDTO> GetProduct(int id)
         {
@@ -40,6 +42,8 @@ namespace WebApp.Controllers
         }
 
         // POST: api/products
+        [TypeFilter(typeof(AuthMiddleware))]
+        [TypeFilter(typeof(AdminMiddleware))]
         [HttpPost]
         public ActionResult<GetProductDTO> CreateProduct(PostProductDTO productDTO)
         {
@@ -48,6 +52,8 @@ namespace WebApp.Controllers
         }
 
         // PUT: api/products/5
+        [TypeFilter(typeof(AuthMiddleware))]
+        [TypeFilter(typeof(AdminMiddleware))]
         [HttpPut("{id}")]
         public IActionResult UpdateProduct(int id, PutProductDTO productDTO)
         {
@@ -63,6 +69,8 @@ namespace WebApp.Controllers
         }
 
         // DELETE: api/products/5
+        [TypeFilter(typeof(AuthMiddleware))]
+        [TypeFilter(typeof(AdminMiddleware))]
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {

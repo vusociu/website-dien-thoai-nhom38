@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using WebApp.DTO.Order;
 using WebApp.DTO.Cart;
 using WebApp.Repositories;
+using WebApp.Middlewares;
 
 namespace WebApp.Controllers
 {
@@ -37,6 +38,7 @@ namespace WebApp.Controllers
         }
 
         // POST: api/order/checkout
+        [TypeFilter(typeof(AuthMiddleware))]
         [HttpPost("checkout")]
         public async Task<IActionResult> Checkout([FromBody] CheckoutRequest request)
         {
@@ -103,6 +105,7 @@ namespace WebApp.Controllers
         }
 
         // POST: api/order/checkout-from-cart
+        [TypeFilter(typeof(AuthMiddleware))]
         [HttpPost("checkout-from-cart")]
         public async Task<IActionResult> CheckoutFromCart([FromBody] CartCheckoutRequest request)
         {
@@ -157,6 +160,7 @@ namespace WebApp.Controllers
             });
         }
 
+        [TypeFilter(typeof(AuthMiddleware))]
         [HttpGet("{id}/detail")]
         public IActionResult GetOrderDetails([FromRoute] int id)
         {

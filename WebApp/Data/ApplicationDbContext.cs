@@ -7,7 +7,7 @@ namespace WebApp.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<Role> Roles { get; set; }
+        public DbSet<Models.Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserToken> UserTokens { get; set; }
         public DbSet<Category> Categories { get; set; }

@@ -1,57 +1,65 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 using System.Threading.Tasks;
 
 namespace WebApp.Middlewares
 {
-    public class AuthMiddleware
+    public class AuthMiddleware : IAsyncActionFilter
     {
-        private readonly RequestDelegate _next;
         private readonly ILogger<AuthMiddleware> _logger;
+        private readonly JwtService _jwtService;
 
-        public AuthMiddleware(RequestDelegate next, ILogger<AuthMiddleware> logger)
+        public AuthMiddleware(ILogger<AuthMiddleware> logger, JwtService jwtService)
         {
-            _next = next;
             _logger = logger;
+            _jwtService = jwtService;
         }
 
-        public async Task InvokeAsync(HttpContext context)
+        public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            var path = context.Request.Path.ToString();
-            if (path.Contains("/login", StringComparison.OrdinalIgnoreCase)|| path.Contains("/register", StringComparison.OrdinalIgnoreCase))
-            {
-                await _next(context);
-                return;
-            }
-            var token = context.Request.Headers["Authorization"].FirstOrDefault();
-            _logger.LogInformation(token);
+            var httpContext = context.HttpContext;
+            var path = httpContext.Request.Path.ToString();
+            var token = httpContext.Request.Headers["Authorization"].FirstOrDefault();
+            _logger.LogInformation("Token: {Token}", token);
+
             if (token != null && token.StartsWith("Bearer "))
             {
                 token = token.Substring("Bearer ".Length);
             }
+
             if (token == null)
             {
-                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                await context.Response.WriteAsync("Unauthorized: Missing or invalid token.");
+                httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                await httpContext.Response.WriteAsync("Unauthorized: Missing or invalid token.");
                 return;
             }
+
             try
             {
-                var jwtService = context.RequestServices.GetRequiredService<JwtService>();
-                var dataToken = jwtService.verify(token);
-                var userId = int.Parse(dataToken.Issuer);
-                if (!int.TryParse(dataToken.Issuer, out userId))
+                var dataToken = _jwtService.verify(token);
+
+                if (!int.TryParse(dataToken.Issuer, out int userId))
                 {
-                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                    await context.Response.WriteAsync("Unauthorized: Invalid token claims.");
+                    httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    await httpContext.Response.WriteAsync("Unauthorized: Invalid token claims.");
                     return;
                 }
-                context.Items["User"] = userId;
-                await _next(context);
+                var roleIdClaim = dataToken.Claims.FirstOrDefault(c => c.Type == "roleId")?.Value;
+
+                if (roleIdClaim == null || !int.TryParse(roleIdClaim, out int roleId))
+                {
+                    throw new Exception("roleId claim is missing or not a valid integer.");
+                }
+
+                httpContext.Items["User"] = userId;
+                httpContext.Items["RoleId"] = roleId;
+                await next();
             }
-            catch
+            catch (Exception ex)
             {
-                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                await context.Response.WriteAsync("Unauthorized: Token validation failed.");
+                _logger.LogError(ex, "Token validation failed");
+                httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                await httpContext.Response.WriteAsync("Unauthorized: Token validation failed.");
             }
         }
     }
