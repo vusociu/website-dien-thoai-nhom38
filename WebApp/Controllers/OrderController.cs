@@ -45,7 +45,7 @@ namespace WebApp.Controllers
                 PhoneNumber = request.PhoneNumber,
                 Address = request.Address,
                 Note = request.Note,
-                OrderDate = DateTime.Now,
+                OrderDate = DateTime.UtcNow,
                 Status = 0,
                 TotalMoney = request.CartItems.Sum(i => i.Price * i.Quantity)
             };
