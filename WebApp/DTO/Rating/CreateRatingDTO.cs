@@ -7,5 +7,5 @@ public class CreateRatingDTO
     [Required]
      public float Point { get; set; }
     [Required]
-     public string Content { get; set; }
+     public string Comment { get; set; }
 }

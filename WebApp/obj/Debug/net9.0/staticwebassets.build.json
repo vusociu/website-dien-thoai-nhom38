@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MyXxbKVzt6Qj/b8izmdt7ooQpxYGQQ7XZn4095lNTh0=",
+  "Hash": "ULw96gbUf8UCKG8sqdSFBSOZwpN1sIwiDRmLKOvGsaU=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -57,6 +57,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\redmi9t.png"
+    },
+    {
+      "Identity": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\redmi9t.png222071",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "uploads/redmi9t#[.{fingerprint}]?.png222071",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "illizcokee",
+      "Integrity": "1nBK+9fWGA8hZg2jGfVRQGOsZ4vr80pD6NPOJ83NTts=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\redmi9t.png222071"
     }
   ],
   "Endpoints": [
@@ -83,7 +104,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 12 May 2025 07:52:09 GMT"
+          "Value": "Mon, 12 May 2025 08:37:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -128,7 +149,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 12 May 2025 07:52:09 GMT"
+          "Value": "Mon, 12 May 2025 08:37:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -165,7 +186,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 12 May 2025 07:52:09 GMT"
+          "Value": "Mon, 12 May 2025 08:37:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -180,6 +201,51 @@
         {
           "Name": "label",
           "Value": "uploads/redmi9t.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-1nBK+9fWGA8hZg2jGfVRQGOsZ4vr80pD6NPOJ83NTts="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/redmi9t.illizcokee.png222071",
+      "AssetFile": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\redmi9t.png222071",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6138"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1nBK+9fWGA8hZg2jGfVRQGOsZ4vr80pD6NPOJ83NTts=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 12 May 2025 08:46:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "illizcokee"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/redmi9t.png222071"
         },
         {
           "Name": "integrity",
@@ -210,11 +276,48 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 12 May 2025 07:52:09 GMT"
+          "Value": "Mon, 12 May 2025 08:37:44 GMT"
         },
         {
           "Name": "Cache-Control",
           "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1nBK+9fWGA8hZg2jGfVRQGOsZ4vr80pD6NPOJ83NTts="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/redmi9t.png222071",
+      "AssetFile": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\redmi9t.png222071",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6138"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1nBK+9fWGA8hZg2jGfVRQGOsZ4vr80pD6NPOJ83NTts=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 12 May 2025 08:46:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
         }
       ],
       "EndpointProperties": [
