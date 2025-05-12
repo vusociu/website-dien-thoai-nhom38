@@ -20,7 +20,7 @@
             {
                 file.CopyToAsync(stream);
             }
-            return avatar.Replace("/app/wwwroot", "");
+            return avatar;
         }
     }
 }
