@@ -55,7 +55,7 @@ namespace WebApp.Controllers
         [TypeFilter(typeof(AuthMiddleware))]
         [TypeFilter(typeof(AdminMiddleware))]
         [HttpPut("{id}")]
-        public IActionResult UpdateProduct(int id, PutProductDTO productDTO)
+        public IActionResult UpdateProduct(int id,[FromBody] PutProductDTO productDTO)
         {
             try
             {
