@@ -63,7 +63,7 @@ namespace WebApp.Controllers
                 ProductId = productId,
                 UserId = (int)HttpContext.Items["User"],
                 Point = dto.Point,
-                Content = dto.Content,
+                Content = dto.Comment,
             };
             _ratingRepository.create((rating));
             return Ok();
