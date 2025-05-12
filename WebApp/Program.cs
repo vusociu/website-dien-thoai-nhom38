@@ -6,9 +6,14 @@ using WebApp.Middlewares;
 using WebApp.helpers;
 using Microsoft.Extensions.Options;
 using WebApp.Utility;
-//using neondb.Data;
+using dotenv.net;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+DotEnv.Load();
+
+string connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
 builder.Services.AddCors(options =>
 {
@@ -29,7 +34,7 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
