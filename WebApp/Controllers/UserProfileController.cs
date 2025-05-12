@@ -18,7 +18,7 @@ namespace WebApp.Controllers
 
         [TypeFilter(typeof(AuthMiddleware))]
         [HttpGet]
-        public IActionResult updateProfile()
+        public IActionResult indexProfile()
         {
             return Ok(_userRepository.byId((int)HttpContext.Items["User"]));
         }
@@ -33,7 +33,7 @@ namespace WebApp.Controllers
             user.Address = dto.address;
             user.Avatar = Helper.uploadFile(dto.avatar);
             _userRepository.update(user);
-            return Ok();
+            return Ok(user);
         }
     }
 }
