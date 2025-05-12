@@ -16,7 +16,11 @@
                 Directory.CreateDirectory(uploadsFolderPath);
             }
 
-            string avatar = Path.Combine(uploadsFolderPath, string.Concat(file.FileName, r.NextInt64(1, 1000000).ToString()));
+            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file.FileName);
+            string fileExtension = Path.GetExtension(file.FileName);
+            string uniqueFileName = string.Concat(fileNameWithoutExtension, "_", r.NextInt64(1, 1000000), fileExtension);
+
+            string avatar = Path.Combine(uploadsFolderPath, uniqueFileName);
             using (var stream = new FileStream(avatar, FileMode.Create))
             {
                 file.CopyToAsync(stream);
