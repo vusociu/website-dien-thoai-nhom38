@@ -1775,3 +1775,5 @@ C:\Users\coc14\Downloads\CNWeb\WebApp\obj\Debug\net9.0\WebApp.csproj.Up2Date
 C:\Users\coc14\Downloads\CNWeb\WebApp\obj\Debug\net9.0\WebApp.genruntimeconfig.cache
 C:\Users\coc14\Downloads\CNWeb\WebApp\obj\Debug\net9.0\ref\WebApp.dll
 C:\Users\vund1\Downloads\website-dien-thoai-nhom38\WebApp\bin\Debug\net9.0\WebApp.staticwebassets.runtime.json
+C:\Users\vund\Downloads\website-dien-thoai-nhom38.git\WebApp\bin\Debug\net9.0\WebApp.staticwebassets.runtime.json
+C:\Users\vund\Downloads\website-dien-thoai-nhom38.git\WebApp\bin\Debug\net9.0\dotenv.net.dll
