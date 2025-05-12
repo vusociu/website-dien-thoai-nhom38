@@ -55,6 +55,7 @@ namespace WebApp.Controllers
         [TypeFilter(typeof(AuthMiddleware))]
         [TypeFilter(typeof(AdminMiddleware))]
         [HttpPut("{id}")]
+        [Consumes("multipart/form-data")]
         public IActionResult UpdateProduct(int id,[FromBody] PutProductDTO productDTO)
         {
             try
