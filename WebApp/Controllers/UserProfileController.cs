@@ -29,9 +29,9 @@ namespace WebApp.Controllers
         {
             var user = _userRepository.byId((int)HttpContext.Items["User"]);
             user.Fullname = dto.fullName;
-            user.PhoneNumber = dto.phone;
-            user.Address = dto.address;
-            user.Avatar = Helper.uploadFile(dto.avatar);
+            user.PhoneNumber = string.IsNullOrEmpty(dto.phone) ? "" : dto.phone;
+            user.Address = string.IsNullOrEmpty(dto.address) ? "" : dto.address;
+            user.Avatar = dto.avatar == null ? "" : Helper.uploadFile(dto.avatar);
             _userRepository.update(user);
             return Ok(user);
         }
