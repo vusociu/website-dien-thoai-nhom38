@@ -38,11 +38,12 @@ namespace WebApp.Controllers
                 User matchingUser = users.FirstOrDefault(user => user.Id == rating.UserId);
                 return new
                 {
-                   id = rating.Id,
-                   point = rating.Point,
-                   content = rating.Content,
-                   userName = matchingUser.Fullname,
-                   userAvatar = matchingUser.Avatar,
+                    id = rating.Id,
+                    point = rating.Point,
+                    content = rating.Content,
+                    userName = matchingUser.Fullname,
+                    userAvatar = matchingUser.Avatar,
+                    createdAt = rating.CreatedAt.AddHours(7)
                 };
             }).ToList();
             return Ok(result);
@@ -62,7 +63,7 @@ namespace WebApp.Controllers
                 ProductId = productId,
                 UserId = (int)HttpContext.Items["User"],
                 Point = dto.Point,
-                Content = dto.Content
+                Content = dto.Content,
             };
             _ratingRepository.create((rating));
             return Ok();
