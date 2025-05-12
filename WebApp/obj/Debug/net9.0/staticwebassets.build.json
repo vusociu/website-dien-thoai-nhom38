@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Qn2wVNES3/fZdb3gZQUPZtjuAIr/d1Lx2RXSTTHxSEc=",
+  "Hash": "RJWX8wu7jJdw6YuuUqTydXWgQNViK7CvmqyyJU1dTnE=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "WebApp\\wwwroot",
       "Source": "WebApp",
-      "ContentRoot": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\",
       "BasePath": "_content/WebApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "Identity": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\",
       "BasePath": "_content/WebApp",
       "RelativePath": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -41,7 +41,7 @@
   "Endpoints": [
     {
       "Route": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.8pzle52rys.jpg",
-      "AssetFile": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "AssetFile": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -62,7 +62,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 10 May 2025 04:24:27 GMT"
+          "Value": "Mon, 12 May 2025 07:06:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -86,7 +86,7 @@
     },
     {
       "Route": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
-      "AssetFile": "C:\\Users\\vund1\\Downloads\\website-dien-thoai-nhom38\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "AssetFile": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -107,7 +107,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 10 May 2025 04:24:27 GMT"
+          "Value": "Mon, 12 May 2025 07:06:31 GMT"
         },
         {
           "Name": "Cache-Control",
