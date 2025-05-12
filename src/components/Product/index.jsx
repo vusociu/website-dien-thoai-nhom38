@@ -1,13 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
 import Header from './Header';
 import Body from './Body';
-import Footer from './Footer';
-
-
 
 function Productions() {
   return (
@@ -27,5 +21,5 @@ function Productions() {
   )
 }
   
-  export default Productions;
+export default Productions;
   

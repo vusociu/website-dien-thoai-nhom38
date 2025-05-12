@@ -7,51 +7,41 @@ import {
   Alert
 } from '@mui/material';
 import Item from '../Product/Item';
-import FilterHeader from '../Product/Header';
+import Header from '../Product/Header';
 import { searchProducts } from '../../api/products';
 import { useSearchParams } from 'react-router-dom';
 
-function SearchItems() {
+function SortedItems() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchParams] = useSearchParams();
-  const [filterParams, setFilterParams] = useState({
-    minPrice: undefined,
-    maxPrice: undefined,
-    sortOrder: "asc"
-  });
 
   useEffect(() => {
-    const fetchSearch = async () => {
+    const fetchSortedProducts = async () => {
       try {
         setLoading(true);
-        const title = searchParams.get('title') || '';
         
+        // Lấy các tham số lọc từ URL
         const minPrice = searchParams.get('minPrice');
         const maxPrice = searchParams.get('maxPrice');
         const sortOrder = searchParams.get('sortOrder') || 'asc';
         
         const results = await searchProducts({ 
-          title,
           minPrice: minPrice ? parseInt(minPrice) : undefined,
           maxPrice: maxPrice ? parseInt(maxPrice) : undefined,
           sortOrder
         });
         setProducts(results);
       } catch (err) {
-        console.error("Lỗi khi tìm kiếm:", err);
-        setError("Lỗi khi tìm kiếm sản phẩm. Vui lòng thử lại sau.");
+        console.error("Lỗi khi lọc sản phẩm:", err);
+        setError("Lỗi khi lọc sản phẩm. Vui lòng thử lại sau.");
       } finally {
         setLoading(false);
       }
     }
-    fetchSearch();
+    fetchSortedProducts();
   }, [searchParams]);
-
-  const handleFilterChange = async (filters) => {
-    setFilterParams(filters);
-  };
 
   let content;
   if (loading) {
@@ -65,7 +55,7 @@ function SearchItems() {
   } else if (products.length === 0) {
     content = (
       <Box sx={{ p: 2 }}>
-        <Typography>Không tìm thấy sản phẩm nào</Typography>
+        <Typography>Không tìm thấy sản phẩm nào phù hợp</Typography>
       </Box>
     );
   } else {
@@ -84,10 +74,10 @@ function SearchItems() {
 
   return (
     <Box>
-      <FilterHeader onFilterChange={handleFilterChange} />
+      <Header />
       {content}
     </Box>
   );
 }
   
-export default SearchItems;
+export default SortedItems; 

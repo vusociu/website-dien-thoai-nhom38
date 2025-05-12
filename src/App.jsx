@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Broad from './pages/Broads/_id';
+import SortedPage from './pages/SortedPage';
 import SearchPage from './pages/SearchPage';
 import CategoryPage from './pages/CategoryPage';
 import CartPage from './pages/CartPage';
@@ -22,7 +23,6 @@ function App() {
   }, [isAuthenticated, user]);
   
   const canAccessAdmin = () => {
-    console.log(user);
     if (!user) return false;
     return user.roleId === 1;
   };
@@ -35,6 +35,7 @@ function App() {
         <Route path="/" element={<Broad />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/category" element={<CategoryPage />} />
+        <Route path="/sort" element={<SortedPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/checkout/success" element={<Success />} />

@@ -15,10 +15,12 @@ import {
   Tooltip
 } from "@mui/material";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 
 const Header = ({ onFilterChange }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [anchorEl, setAnchorEl] = useState(null);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -83,7 +85,11 @@ const Header = ({ onFilterChange }) => {
 
       newParams.set("sortOrder", sortOrder);
 
-      setSearchParams(newParams);
+      if (location.pathname === "/") {
+        navigate(`/sort?${newParams.toString()}`);
+      } else {
+        setSearchParams(newParams);
+      }
 
       if (onFilterChange) {
         onFilterChange({

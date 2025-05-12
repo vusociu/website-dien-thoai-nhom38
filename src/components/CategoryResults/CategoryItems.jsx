@@ -31,8 +31,7 @@ function CategoryItems() {
           setProducts([]);
           return;
         }
-        
-        // Get filter parameters from URL if they exist
+
         const minPrice = searchParams.get('minPrice');
         const maxPrice = searchParams.get('maxPrice');
         const sortOrder = searchParams.get('sortOrder') || 'asc';

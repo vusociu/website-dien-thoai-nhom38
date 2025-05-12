@@ -288,7 +288,6 @@ const SignUpModal = ({ open, onClose, onOpenLogin }) => {
         />
 
         <TextField
-          autoFocus
           margin="dense"
           label="Địa chỉ"
           name="address"

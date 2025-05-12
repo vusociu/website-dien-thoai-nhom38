@@ -56,92 +56,91 @@ function Admin() {
     fetchProducts();
   }, []);
 
-const handleAddProduct = async () => {
-  try {
-    const formData = new FormData();
-    formData.append("categoryId", newProduct.categoryId);
-    formData.append("title", newProduct.title);
-    formData.append("price", newProduct.price);
-    formData.append("description", newProduct.description);
-    if (newProduct.image) {
-      formData.append("thumbnail", newProduct.image); // Gửi file thực tế
+  const handleAddProduct = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("categoryId", newProduct.categoryId);
+      formData.append("title", newProduct.title);
+      formData.append("price", newProduct.price);
+      formData.append("description", newProduct.description);
+      if (newProduct.image) {
+        formData.append("thumbnail", newProduct.image); // Gửi file thực tế
+      }
+
+      const response = await fetch(productApi, {
+        method: "POST",
+        headers: {
+          "Authorization": token ? `Bearer ${token}` : "",
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add product");
+      }
+
+      const createdProduct = await response.json();
+      setProducts([...products, createdProduct]); // Cập nhật danh sách sản phẩm
+      setNewProduct({
+        title: "",
+        categoryId: "",
+        price: "",
+        description: "",
+        image: null,
+        imagePreview: null,
+      });
+      setOpenAddDialog(false); // Đóng dialog
+    } catch (error) {
+      console.error("Error adding product:", error);
     }
+  };
 
-    const response = await fetch(productApi, {
-      method: "POST",
-      headers: {
-        "Authorization": token ? `Bearer ${token}` : "",
-      },
-      body: formData,
-    });
+  const handleEditProduct = async () => {
+    try {
+      // Kiểm tra dữ liệu trước khi gửi
+      if (!editingProduct.title || !editingProduct.categoryId || !editingProduct.price) {
+        console.error("Vui lòng nhập đầy đủ thông tin sản phẩm.");
+        return;
+      }
 
-    if (!response.ok) {
-      throw new Error("Failed to add product");
+      const formData = new FormData();
+      formData.append("id", editingProduct.id);
+      formData.append("categoryId", editingProduct.categoryId);
+      formData.append("title", editingProduct.title);
+      formData.append("price", editingProduct.price);
+      formData.append("description", editingProduct.description || "");
+      
+      // Nếu có hình ảnh mới
+      if (editingProduct.image) {
+        formData.append("thumbnail", editingProduct.image);
+      }
+
+      const response = await fetch(`${productApi}/${editingProduct.id}`, {
+        method: "PUT",
+        headers: {
+          "Authorization": token ? `Bearer ${token}` : "",
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update product");
+      }
+
+      const updatedProduct = await response.json();
+      
+      // Cập nhật danh sách sản phẩm với sản phẩm đã được chỉnh sửa
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product.id === updatedProduct.id ? updatedProduct : product
+        )
+      );
+      
+      setOpenEditDialog(false); // Đóng dialog
+    } catch (error) {
+      console.error("Error updating product:", error);
     }
-
-    const createdProduct = await response.json();
-    setProducts([...products, createdProduct]); // Cập nhật danh sách sản phẩm
-    setNewProduct({
-      title: "",
-      categoryId: "",
-      price: "",
-      description: "",
-      image: null,
-      imagePreview: null,
-    });
-    setOpenAddDialog(false); // Đóng dialog
-  } catch (error) {
-    console.error("Error adding product:", error);
-  }
-};
-
-const handleEditProduct = async () => {
-  try {
-    // Kiểm tra dữ liệu trước khi gửi
-    if (!editingProduct.title || !editingProduct.categoryId || !editingProduct.price) {
-      console.error("Vui lòng nhập đầy đủ thông tin sản phẩm.");
-      return;
-    }
-
-    // Chuẩn bị dữ liệu JSON
-    const updatedProductData = {
-      categoryId: editingProduct.categoryId,
-      title: editingProduct.title,
-      price: editingProduct.price,
-      rating: editingProduct.rating || 0, // Nếu không có rating, mặc định là 0
-      thumbnail: editingProduct.imagePreview || editingProduct.thumbnail || "", // Sử dụng hình ảnh mới hoặc giữ nguyên hình ảnh cũ
-      description: editingProduct.description,
-    };
-
-    // Gửi yêu cầu PUT
-    const response = await fetch(`${productApi}/${editingProduct.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": token ? `Bearer ${token}` : "",
-      },
-      body: JSON.stringify(updatedProductData), // Gửi dữ liệu dưới dạng JSON
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to update product");
-    }
-
-    const updatedProduct = await response.json();
-    console.log("Updated Product:", updatedProduct); // Log sản phẩm đã cập nhật
-
-   // Cập nhật danh sách sản phẩm
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.id === updatedProduct.id ? updatedProduct : product
-      )
-    );
-    //  setProducts([...products, createdProduct]);
-    setOpenEditDialog(false); // Đóng dialog
-  } catch (error) {
-    console.error("Error updating product:", error);
-  }
-};
+  };
 
   const handleDeleteProduct = async (id) => {
     try {
@@ -157,28 +156,28 @@ const handleEditProduct = async () => {
         throw new Error("Failed to delete product");
       }
 
-    setProducts((prevProducts) =>
-      prevProducts.filter((product) => product.id !== id)
-    );
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product.id !== id)
+      );
     } catch (error) {
       console.error("Error deleting product:", error);
     }
   };
 
-const handleFileChange = (e, setProduct) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      setProduct((prev) => ({
-        ...prev,
-        image: file, // Lưu file thực tế
-        imagePreview: reader.result, // Hiển thị bản xem trước
-      }));
-    };
-    reader.readAsDataURL(file);
-  }
-};
+  const handleFileChange = (e, setProduct) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProduct((prev) => ({
+          ...prev,
+          image: file, // Lưu file thực tế
+          imagePreview: reader.result, // Hiển thị bản xem trước
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <Box>
@@ -222,6 +221,7 @@ const handleFileChange = (e, setProduct) => {
           setProduct={setEditingProduct}
           onClose={() => setOpenEditDialog(false)}
           onSave={handleEditProduct}
+          onFileChange={handleFileChange}
         />
       </Box>
     </Box>

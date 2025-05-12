@@ -27,8 +27,8 @@ function AddProductDialog({
     { name: "Samsung", id: 2 },
     { name: "OPPO", id: 3 },
     { name: "Xiaomi", id: 4 },
-    { name: "Nokia", id: 5 },
-    { name: "iPad", id: 6 },
+    // { name: "Nokia", id: 5 },
+    // { name: "iPad", id: 6 },
   ];
   const BASE_URL = "https://website-dien-thoai-nhom38-production.up.railway.app";
   return (

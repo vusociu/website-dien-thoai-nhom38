@@ -1,13 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import CategoryItems from './CategoryItems';
+import SortedItems from './SortedItems';
 import { useLocation } from 'react-router-dom';
 
-function CategoryResults() {
+function SortedResults() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const name = searchParams.get('name') || '';
 
   return (
       <Box sx={{
@@ -19,12 +18,11 @@ function CategoryResults() {
         pr: '10px',
         pb: '10px',
       }}>
-        <Typography variant="body1" sx={{ m: 2 }}>Danh mục: <strong>{name}</strong></Typography>
-        {/* Header is in CategoryItems */}
-        <CategoryItems/>
+        {/* Header is in SortedItems */}
+        <SortedItems/>
       </Box>
   )
 }
   
-export default CategoryResults;
+  export default SortedResults;
   

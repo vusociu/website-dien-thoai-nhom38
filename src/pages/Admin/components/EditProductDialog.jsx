@@ -15,26 +15,16 @@ import {
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 
-function EditProductDialog({ open, product, setProduct, onClose, onSave }) {
+function EditProductDialog({ open, product, setProduct, onClose, onSave, onFileChange }) {
   const categories = [
     { name: "iPhone", id: 1 },
     { name: "Samsung", id: 2 },
     { name: "OPPO", id: 3 },
     { name: "Xiaomi", id: 4 },
-    { name: "Nokia", id: 5 },
-    { name: "iPad", id: 6 },
+    // { name: "Nokia", id: 5 },
+    // { name: "iPad", id: 6 },
   ];
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setProduct({ ...product, imagePreview: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
   const BASE_URL = "https://website-dien-thoai-nhom38-production.up.railway.app";
   return (
     <Dialog open={open} onClose={onClose}>
@@ -45,7 +35,7 @@ function EditProductDialog({ open, product, setProduct, onClose, onSave }) {
           fullWidth
           value={product?.title || ""}
           onChange={(e) => setProduct({ ...product, title: e.target.value })}
-          sx={{ mb: 2 }}
+          sx={{ mb: 2, mt: 1 }}
         />
         <FormControl fullWidth sx={{ mb: 2 }}>
           <InputLabel  sx={{ backgroundColor: "white", px: 1 }}>Loại sản phẩm</InputLabel>
@@ -98,7 +88,7 @@ function EditProductDialog({ open, product, setProduct, onClose, onSave }) {
               type="file"
               hidden
               accept="image/*"
-              onChange={(e) => handleFileChange(e, setProduct)}
+              onChange={(e) => onFileChange(e, setProduct)}
             />
           </Button>
         {product?.imagePreview ? (

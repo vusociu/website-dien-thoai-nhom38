@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
   Button,
@@ -24,18 +24,23 @@ import { setUserInfo, getUserInfo } from '../../utils/storage';
 
 const UserProfileEdit = () => {
   const { user, login } = useAuth();
+  const fileInputRef = useRef(null);
+  const [avatar, setAvatar] = useState(null);
+  const [avatarPreview, setAvatarPreview] = useState(user?.avatar || null);
   const [formData, setFormData] = useState({
     fullName: user?.fullName || "",
     phone: user?.phone || "",
-    address: user?.address || ""
+    address: user?.address || "",
+    roleId: user?.roleId || ""
   });
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (user) {
+      console.log(user);
       setFormData({
         fullName: user.fullName || "",
         phone: user.phone || "",
-        address: user.address || ""
+        address: user.address || "",
       });
     }
   }, [user]);
@@ -77,6 +82,56 @@ const UserProfileEdit = () => {
     setErrors({ ...errors, [name]: validateField(name, value) });
   };
 
+  const handleUploadAvatar = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setAvatar(file);
+      // Create preview URL for the image
+      const previewUrl = URL.createObjectURL(file);
+      setAvatarPreview(previewUrl);
+      
+      // Upload immediately
+      uploadAvatar(file);
+    }
+  };
+
+  const uploadAvatar = async (file) => {
+    setLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append('avatar', file);
+      formData.append('fullName', user.fullName);
+      const res = await updateUser(formData);
+
+      const currentUserInfo = getUserInfo();
+      const updatedUserInfo = {
+        ...currentUserInfo,
+        avatar: res.avatar || res.data?.avatar
+      };
+      setUserInfo(updatedUserInfo);
+      login(updatedUserInfo);
+
+      setSnackbar({
+        open: true,
+        message: "Cập nhật ảnh đại diện thành công!",
+        severity: "success"
+      });
+    } catch (err) {
+      console.log(err.message);
+      setSnackbar({
+        open: true,
+        message: "Không thể cập nhật ảnh đại diện. Vui lòng thử lại!",
+        severity: "error"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Validate all fields
@@ -90,16 +145,14 @@ const UserProfileEdit = () => {
       setErrors(newErrors);
       return;
     }
-    
+
     setLoading(true);
-    
+
     try {
-      const res = await updateUser(user.id, formData);
-      
-      // Lấy thông tin user hiện tại từ localStorage
+      const res = await updateUser(formData);
+
       const currentUserInfo = getUserInfo();
-      
-      // Tạo object userData mới với thông tin đã cập nhật
+
       const updatedUserInfo = {
         ...currentUserInfo,
         fullName: formData.fullName,
@@ -108,7 +161,7 @@ const UserProfileEdit = () => {
       };
       setUserInfo(updatedUserInfo);
       login(updatedUserInfo);
-      
+
       setSnackbar({
         open: true,
         message: "Cập nhật thông tin thành công!",
@@ -135,14 +188,31 @@ const UserProfileEdit = () => {
   };
 
   return (
-    <Box px={{ xs: 1, md: 2 }} py={{xs: 8, md: 4}}>
+    <Box px={{ xs: 1, md: 2 }} py={{ xs: 8, md: 4 }}>
       <Paper sx={{ p: 3, maxWidth: 600, margin: "0 auto" }}>
         <Stack spacing={3}>
           <Box sx={{ textAlign: "center" }}>
             <Avatar
               sx={{ width: 60, height: 60, margin: "0 auto 16px" }}
               alt="Avatar"
+              src={avatarPreview}
             />
+            <input
+              type="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              ref={fileInputRef}
+              onChange={handleFileChange}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={handleUploadAvatar}
+              sx={{ textTransform: "none", mb: 1 }}
+            >
+              Tải ảnh lên
+            </Button>
             <Typography variant="h6" component="h1" gutterBottom>
               Chỉnh sửa thông tin cá nhân
             </Typography>
@@ -151,9 +221,11 @@ const UserProfileEdit = () => {
           <form onSubmit={handleSubmit}>
             <Box>
               <Box component="span" sx={{ position: "relative", mr: 3 }}>
-                <PersonOutlineIcon sx={{ position: "absolute", fontSize: 20, top: 1 }} />
+                <PersonOutlineIcon
+                  sx={{ position: "absolute", fontSize: 20, top: 1 }}
+                />
               </Box>
-              <Typography variant="subtitle2" component="span" >
+              <Typography variant="subtitle2" component="span">
                 Họ và tên
               </Typography>
               <TextField
@@ -172,9 +244,11 @@ const UserProfileEdit = () => {
 
             <Box mt={2}>
               <Box component="span" sx={{ position: "relative", mr: 3 }}>
-                <PhoneOutlinedIcon sx={{ position: "absolute", fontSize: 20, top: 1 }} />
+                <PhoneOutlinedIcon
+                  sx={{ position: "absolute", fontSize: 20, top: 1 }}
+                />
               </Box>
-              <Typography variant="subtitle2" component="span" >
+              <Typography variant="subtitle2" component="span">
                 Số điện thoại
               </Typography>
               <TextField
@@ -192,9 +266,11 @@ const UserProfileEdit = () => {
 
             <Box mt={2}>
               <Box component="span" sx={{ position: "relative", mr: 3 }}>
-                <LocationOnOutlinedIcon sx={{ position: "absolute", fontSize: 20, top: 1 }} />
+                <LocationOnOutlinedIcon
+                  sx={{ position: "absolute", fontSize: 20, top: 1 }}
+                />
               </Box>
-              <Typography variant="subtitle2" component="span" >
+              <Typography variant="subtitle2" component="span">
                 Địa chỉ
               </Typography>
               <TextField
@@ -215,7 +291,13 @@ const UserProfileEdit = () => {
             <Grid container spacing={2} sx={{ mt: 2 }}>
               <Grid size={{ xs: 12, md: 6 }}>
                 {loading ? (
-                  <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "100%",
+                    }}
+                  >
                     <CircularProgress />
                   </Box>
                 ) : (
@@ -225,11 +307,11 @@ const UserProfileEdit = () => {
                     color="primary"
                     type="submit"
                     onClick={handleSubmit}
-                  startIcon={<SaveOutlinedIcon />}
-                  disabled={Object.values(errors).some((error) => !!error)}
-                >
-                  Lưu thay đổi
-                </Button>
+                    startIcon={<SaveOutlinedIcon />}
+                    disabled={Object.values(errors).some((error) => !!error)}
+                  >
+                    Lưu thay đổi
+                  </Button>
                 )}
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
