@@ -59,14 +59,14 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-//app.Use(async (context, next) =>
-//{
-//    var appSettings = context.RequestServices.GetRequiredService<IOptions<AppSettings>>().Value;
-//    var timeZoneId = appSettings.DefaultTimeZone;
-//    var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
-//    context.Items["TimeZone"] = timeZoneInfo;
-//    await next();
-//});
+app.Use(async (context, next) =>
+{
+    var appSettings = context.RequestServices.GetRequiredService<IOptions<AppSettings>>().Value;
+    var timeZoneId = appSettings.DefaultTimeZone;
+    var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+    context.Items["TimeZone"] = timeZoneInfo;
+    await next();
+});
 
 if (!app.Environment.IsDevelopment())
 {
