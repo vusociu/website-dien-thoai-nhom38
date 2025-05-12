@@ -31,6 +31,11 @@ namespace WebApp.Repositories
             return _context.Users.Where(u => u.RoleId== WebApp.Data.Role.USER).OrderBy(u=>u.CreatedAt).ToList();
         }
 
+        public List<User> byIds(int[] ids)
+        {
+            return _context.Users.Where(u => ids.Contains(u.Id)).OrderBy(u => u.CreatedAt).ToList();
+        }
+
         public User byId(int id)
         {
             return _context.Users.FirstOrDefault(u => u.Id == id);
