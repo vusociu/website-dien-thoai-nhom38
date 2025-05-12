@@ -84,7 +84,7 @@ namespace WebApp.Repositories
                 Title = product.Title,
                 Price = product.Price,
                 Rating = product.Rating,
-                Thumbnail = Helper.uploadFile(productDTO.Thumbnail),
+                Thumbnail = product.Thumbnail,
                 Description = product.Description
             };
         }
@@ -111,7 +111,10 @@ namespace WebApp.Repositories
             existingProduct.Title = productDTO.Title;
             existingProduct.Price = productDTO.Price;
             existingProduct.Rating = productDTO.Rating;
-            existingProduct.Thumbnail = productDTO.Thumbnail;
+            if (productDTO.Thumbnail != null && productDTO.Thumbnail.Length > 0)
+            {
+                existingProduct.Thumbnail = Helper.uploadFile(productDTO.Thumbnail);
+            }
             existingProduct.Description = productDTO.Description;
             existingProduct.UpdatedAt = DateTime.UtcNow;
 
