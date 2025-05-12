@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\WebApp",
+    "\\WebApp\\app",
+    "\\WebApp\\Controllers",
+    "\\WebApp\\DTO",
+    "\\WebApp\\Middlewares",
+    "\\WebApp\\Models"
+  ],
+  "SelectedNode": "\\WebApp\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}

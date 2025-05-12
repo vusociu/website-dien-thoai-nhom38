@@ -1,0 +1,228 @@
+{
+  "Version": 1,
+  "Hash": "hNr94iSGmInj7WG98XGssU2yvNWOha1njWsRNT47wEs=",
+  "Source": "WebApp",
+  "BasePath": "_content/WebApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "WebApp\\wwwroot",
+      "Source": "WebApp",
+      "ContentRoot": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8pzle52rys",
+      "Integrity": "BHbzhI+orTLGCQQ7cTi42LJ79DpvjL7TMy7SIKV/u34=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\redmi9t.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "uploads/redmi9t#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "illizcokee",
+      "Integrity": "1nBK+9fWGA8hZg2jGfVRQGOsZ4vr80pD6NPOJ83NTts=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\redmi9t.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.8pzle52rys.jpg",
+      "AssetFile": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "131072"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BHbzhI+orTLGCQQ7cTi42LJ79DpvjL7TMy7SIKV/u34=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 12 May 2025 07:06:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8pzle52rys"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BHbzhI+orTLGCQQ7cTi42LJ79DpvjL7TMy7SIKV/u34="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "AssetFile": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\giai-thich-dong-thoi-gian-cua-dragon-ball-daima-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "131072"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BHbzhI+orTLGCQQ7cTi42LJ79DpvjL7TMy7SIKV/u34=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 12 May 2025 07:06:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BHbzhI+orTLGCQQ7cTi42LJ79DpvjL7TMy7SIKV/u34="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/redmi9t.illizcokee.png",
+      "AssetFile": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\redmi9t.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6138"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1nBK+9fWGA8hZg2jGfVRQGOsZ4vr80pD6NPOJ83NTts=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 12 May 2025 07:35:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "illizcokee"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/redmi9t.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-1nBK+9fWGA8hZg2jGfVRQGOsZ4vr80pD6NPOJ83NTts="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/redmi9t.png",
+      "AssetFile": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\wwwroot\\uploads\\redmi9t.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6138"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1nBK+9fWGA8hZg2jGfVRQGOsZ4vr80pD6NPOJ83NTts=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 12 May 2025 07:35:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1nBK+9fWGA8hZg2jGfVRQGOsZ4vr80pD6NPOJ83NTts="
+        }
+      ]
+    }
+  ]
+}
