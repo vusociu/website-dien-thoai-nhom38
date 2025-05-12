@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\helpers\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\helpers\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\controllers\\ratingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,14 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\models\\rating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\models\\rating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\helpers\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\helpers\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|solutionrelative:webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9979EE9D-1A6B-7C50-68E9-BD80DFEEF9FE}|WebApp\\WebApp.csproj|c:\\users\\vund\\downloads\\website-dien-thoai-nhom38.git\\webapp\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -86,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -106,19 +110,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\.env",
+              "RelativeDocumentMoniker": "WebApp\\.env",
+              "ToolTip": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\.env",
+              "RelativeToolTip": "WebApp\\.env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-12T07:27:36.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Helper.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\helpers\\Helper.cs",
               "RelativeDocumentMoniker": "WebApp\\helpers\\Helper.cs",
               "ToolTip": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\helpers\\Helper.cs",
               "RelativeToolTip": "WebApp\\helpers\\Helper.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAApwBoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwBYAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T01:03:48.127Z"
+              "WhenOpened": "2025-05-12T01:03:48.127Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Repositories\\IUserRepository.cs",
               "RelativeDocumentMoniker": "WebApp\\Repositories\\IUserRepository.cs",
@@ -130,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "CreateRatingDTO.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\DTO\\Rating\\CreateRatingDTO.cs",
               "RelativeDocumentMoniker": "WebApp\\DTO\\Rating\\CreateRatingDTO.cs",
@@ -142,25 +160,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Program.cs",
               "RelativeDocumentMoniker": "WebApp\\Program.cs",
               "ToolTip": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Program.cs",
               "RelativeToolTip": "WebApp\\Program.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAgwEAAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAgwA8AAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T00:12:29.549Z"
+              "WhenOpened": "2025-05-12T00:12:29.549Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ProductsController.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Controllers\\ProductsController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\ProductsController.cs",
               "ToolTip": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Controllers\\ProductsController.cs",
               "RelativeToolTip": "WebApp\\Controllers\\ProductsController.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAQwDgAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAACsAAAAAAAAAAAAQwDEAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-29T23:50:48.255Z",
               "EditorCaption": ""
@@ -173,14 +192,14 @@
               "RelativeDocumentMoniker": "WebApp\\Repositories\\ProductRepository.cs",
               "ToolTip": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Repositories\\ProductRepository.cs",
               "RelativeToolTip": "WebApp\\Repositories\\ProductRepository.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAkwGcAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAgwEUAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-12T07:14:35.106Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "RatingController.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Controllers\\RatingController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\RatingController.cs",
@@ -188,12 +207,11 @@
               "RelativeToolTip": "WebApp\\Controllers\\RatingController.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAgwCsAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T01:17:44.893Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-12T01:17:44.893Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Rating.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Models\\Rating.cs",
               "RelativeDocumentMoniker": "WebApp\\Models\\Rating.cs",
@@ -205,7 +223,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "CartItem.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Models\\CartItem.cs",
               "RelativeDocumentMoniker": "WebApp\\Models\\CartItem.cs",
@@ -217,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "WebApp\\Repositories\\UserRepository.cs",
@@ -229,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\AuthController.cs",
@@ -241,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "CartController.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\CartController.cs",
@@ -253,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\CategoryController.cs",
@@ -265,7 +283,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "OrderController.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\OrderController.cs",
@@ -277,7 +295,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "WebApp\\Data\\ApplicationDbContext.cs",
@@ -289,7 +307,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Models\\Product.cs",
               "RelativeDocumentMoniker": "WebApp\\Models\\Product.cs",
@@ -301,7 +319,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "SortedProductsController.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Controllers\\SortedProductsController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\SortedProductsController.cs",
@@ -313,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\UserController.cs",
@@ -325,7 +343,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "UserProfileController.cs",
               "DocumentMoniker": "C:\\Users\\vund\\Downloads\\website-dien-thoai-nhom38.git\\WebApp\\Controllers\\UserProfileController.cs",
               "RelativeDocumentMoniker": "WebApp\\Controllers\\UserProfileController.cs",
