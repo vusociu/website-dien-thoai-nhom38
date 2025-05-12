@@ -14,8 +14,7 @@ namespace WebApp.DTO.Product
         [Range(0, 5)]
         public float Rating { get; set; }
 
-        [MaxLength(500)]
-        public string Thumbnail { get; set; }
+        public IFormFile Thumbnail { get; set; }
 
         public string Description { get; set; }
     }

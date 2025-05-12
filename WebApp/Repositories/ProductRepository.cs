@@ -84,7 +84,7 @@ namespace WebApp.Repositories
                 Title = product.Title,
                 Price = product.Price,
                 Rating = product.Rating,
-                Thumbnail = product.Thumbnail,
+                Thumbnail = Helper.uploadFile(productDTO.Thumbnail),
                 Description = product.Description
             };
         }
