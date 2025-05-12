@@ -111,7 +111,10 @@ namespace WebApp.Repositories
             existingProduct.Title = productDTO.Title;
             existingProduct.Price = productDTO.Price;
             existingProduct.Rating = productDTO.Rating;
-            existingProduct.Thumbnail = Helper.uploadFile(productDTO.Thumbnail);
+            if (productDTO.Thumbnail != null && productDTO.Thumbnail.Length > 0)
+            {
+                existingProduct.Thumbnail = Helper.uploadFile(productDTO.Thumbnail);
+            }
             existingProduct.Description = productDTO.Description;
             existingProduct.UpdatedAt = DateTime.UtcNow;
 
